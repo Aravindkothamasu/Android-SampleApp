@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="8">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/Button1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFC107"
+                android:text="@string/BUT_1_NAME"/>
+
+            <Button
+                android:id="@+id/Button2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#8BC34A"
+                android:text="@string/BUT_2_NAME" />
+
+            <Button
+                android:id="@+id/Button3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#AE4D8B"
+                android:text="@string/BUT_3_NAME" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/SampleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/WelcomeMsg"
+            android:textAlignment="gravity"
+            android:textSize="70px"
+            app:fontFamily="sans-serif-black" />
+
+        <EditText
+            android:id="@+id/editText1"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:hint="Enter Phone No."
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:ems="15"
+            android:inputType="time" />
+
+        <CheckBox
+            android:id="@+id/CheckBox1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text=" Nuvu Male ah?"
+            android:textSize="30dp"
+            android:checked="false"
+            android:layout_centerHorizontal="true" />
+
+        <ToggleButton
+            android:id="@+id/ToggleButton1"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:textOn="MALE"
+            android:textOff="FEMALE"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/RadioButton1"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Enti"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp"/>
+
+        <RadioGroup
+            android:id="@+id/RadioGroup1"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:layout_height="match_parent"
+            android:layout_width="fill_parent">
+
+            <RadioButton
+                android:id="@+id/RadioGButton1"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="A"
+                android:textSize="30dp"
+                app:fontFamily="sans-serif-black"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"/>
+            <RadioButton
+                android:id="@+id/RadioGButton2"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="B"
+                android:textSize="30dp"
+                app:fontFamily="sans-serif-black"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"/>
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#9C27B0"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:background="@drawable/ic_launcher_background"
+            android:layout_gravity=""
+            app:fontFamily="serif" />
+
+
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
