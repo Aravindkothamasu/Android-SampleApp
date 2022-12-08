@@ -116,8 +116,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(this, "INSIDE ONCREAT", Toast.LENGTH_SHORT).show();
         textview1.setText("onCreate Called");
 
-        B1.setOnClickListener( new View.OnClickListener()
-        {
+        // BUTTON 1
+        B1.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View V)
             {
@@ -145,8 +145,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        B2.setOnClickListener( new View.OnClickListener()
-        {
+        // BUTTON 2
+        B2.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View V)
             {
@@ -198,8 +198,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        B3.setOnClickListener( new View.OnClickListener()
-        {
+        B2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                Toast.makeText(MainActivity.this, "BUT 3 ON KEY LISTENER", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        // BUTTON 3
+        B3.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View V)
             {
@@ -220,8 +228,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        B3.setOnLongClickListener( new View.OnLongClickListener()
-        {
+        B3.setOnLongClickListener( new View.OnLongClickListener()  {
             @Override
             public boolean onLongClick(View V)
             {
@@ -238,13 +245,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        B2.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                Toast.makeText(MainActivity.this, "BUT 3 ON KEY LISTENER", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
     }
 
 
