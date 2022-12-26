@@ -4,6 +4,10 @@ import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     broadcast airplaneModeChangeReceiver = new broadcast();
 
-
+    // NetworkBroadcast NetBroadcast = new NetworkBroadcast();
     // TimePicker timepicker1;
 
     @Override
@@ -159,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
                 textview1.setText("BUT2 "+edittext1.getText().toString()+" "+c+" "+t+" "+r);
 
-                /*
+
                 progress=new ProgressDialog(MainActivity.this);
                 progress.setTitle("ARAVIND KOTHAMASU"); // Setting Title
                 progress.setMessage("Loading...");
@@ -171,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
                 final int totalProgress = 100;
-                final Thread t = new Thread()
+                final Thread threadId = new Thread()
                 {
                     @Override
                     public void run() {
@@ -193,8 +197,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         progress.dismiss();
                     }
                 };
-                t.start();
-                */
+                threadId.start();
+
             }
         });
 

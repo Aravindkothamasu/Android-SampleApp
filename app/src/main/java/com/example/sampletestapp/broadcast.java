@@ -1,9 +1,12 @@
 package com.example.sampletestapp;
 
+import android.net.ConnectivityManager;
+import android.net.Network;
 import android.provider.Settings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 public class broadcast extends BroadcastReceiver {
@@ -12,10 +15,11 @@ public class broadcast extends BroadcastReceiver {
 
         if (isAirplaneModeOn(context.getApplicationContext())) {
             Toast.makeText(context, "AirPlane mode is on", Toast.LENGTH_SHORT).show();
+            Log.e("AIRPLANE MODE ","ON");
         } else {
             Toast.makeText(context, "AirPlane mode is off", Toast.LENGTH_SHORT).show();
+            Log.e("AIRPLANE MODE ","OFF");
         }
-        // Toast.makeText(context.getApplicationContext(), "", Toast.LENGTH_SHORT).show();
     }
 
     private static boolean isAirplaneModeOn(Context context) {
