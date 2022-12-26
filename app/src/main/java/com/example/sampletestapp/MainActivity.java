@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner spinner1;
 
     broadcast airplaneModeChangeReceiver = new broadcast();
+    ServiceManager serv = new ServiceManager();
+
+
 
     // NetworkBroadcast NetBroadcast = new NetworkBroadcast();
     // TimePicker timepicker1;
@@ -223,6 +226,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 B3.setText( "SQUEEZE "+ getString(R.string.BUT_3_NAME)  );
                 Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
                 textview1.setText("BUT3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r);
+
+
+                if( serv.isNetworkAvaliable(MainActivity.this) == true ) {
+                    textview1.setText( "SERV NET ABLE");
+                    Log.e( "B3.OnClick", "NET ABLE");
+                } else {
+                    textview1.setText("SERV NET NABLE");
+                    Log.e( "B3.OnClick", "NET NABLE");
+                }
             }
 
             public boolean onLongClick(View V)

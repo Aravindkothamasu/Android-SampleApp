@@ -52,16 +52,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/SampleText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/WelcomeMsg"
-            android:textAlignment="gravity"
-            android:textSize="70px"
-            app:fontFamily="sans-serif-black" />
+
 
         <EditText
             android:id="@+id/editText1"
@@ -142,7 +133,16 @@
             android:layout_gravity=""
             app:fontFamily="serif" />
 
-
+        <TextView
+            android:id="@+id/SampleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/WelcomeMsg"
+            android:textAlignment="gravity"
+            android:textSize="70px"
+            app:fontFamily="sans-serif-black" />
 
     </LinearLayout>
 
