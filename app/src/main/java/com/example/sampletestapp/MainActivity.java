@@ -11,6 +11,8 @@ import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     RadioGroup RG1;
     RadioButton RGb1;
 
+
+
     private ProgressDialog progress;
 
     Spinner spinner1;
@@ -62,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     // NetworkBroadcast NetBroadcast = new NetworkBroadcast();
     // TimePicker timepicker1;
+
+    String Str = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,13 +121,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         country.add("Bangkok");
 
 
+        Str = Environment.getExternalStorageDirectory().getAbsolutePath();
 
         ArrayAdapter<String> CountryAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country);
         spinner1.setAdapter(CountryAdapter);
 
         // timepicker1 = (TimePicker)findViewById(R.id.timepicker1);
 
-        Toast.makeText(this, "INSIDE ONCREAT", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "INSIDE ONCREAT", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Str, Toast.LENGTH_SHORT).show();
+
+
+
         textview1.setText("onCreate Called");
 
         // BUTTON 1
