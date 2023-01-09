@@ -11,7 +11,8 @@ import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     RadioGroup RG1;
     RadioButton RGb1;
-
+    private static final String TAG = "SampleAppAct";
 
 
     private ProgressDialog progress;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //setSupportActionBar(binding.toolbar);
         setContentView(R.layout.activity_main);
 
-
+        Log.e(TAG, "In Oncreate Called");
         // Button Defining
         B1 = (Button) findViewById(R.id.Button1);
         B2 = (Button) findViewById(R.id.Button2);
@@ -121,15 +122,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         country.add("Bangkok");
 
 
-        Str = Environment.getExternalStorageDirectory().getAbsolutePath();
-
-        ArrayAdapter<String> CountryAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country);
+        ArrayAdapter<String> CountryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country);
         spinner1.setAdapter(CountryAdapter);
 
         // timepicker1 = (TimePicker)findViewById(R.id.timepicker1);
+        Toast.makeText(this, "INSIDE ONCREAT", Toast.LENGTH_SHORT).show();
 
-        //Toast.makeText(this, "INSIDE ONCREAT", Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "In Oncreate Called");
+        Str = Environment.getExternalStorageDirectory().getAbsolutePath();
         Toast.makeText(this, Str, Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "After String of Enviornment");
 
 
 
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 r=R1.isChecked();
                 Rg=RG1.getCheckedRadioButtonId();
 
-                B1.setText( "SQUEEZE " + getString(R.string.BUT_1_NAME) );
+                B1.setText( "SQUEEZE " + getString(R.string.BUT_1_NAME));
                 if( Rg != -1 )
                 {
                     RGb1 = (RadioButton) findViewById(Rg);
@@ -235,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 c=C1.isChecked();
                 r=R1.isChecked();
 
-                B3.setText( "SQUEEZE "+ getString(R.string.BUT_3_NAME)  );
+                B3.setText( "SQUEEZE " + getString(R.string.BUT_3_NAME) );
                 Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
                 textview1.setText("BUT3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r);
 
@@ -256,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        B3.setOnLongClickListener( new View.OnLongClickListener()  {
+        B3.setOnLongClickListener( new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View V)
             {
