@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     String Str = null;
 
+    // Floating Action Button Decleration
+    FloatingActionButton addAlarmFab, addPersonFab;
+    ExtendedFloatingActionButton addActionFab;
+    TextView addAlarmText, addPersonFabText;
+    Boolean isAllFABVisible = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +113,61 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner1.setOnItemSelectedListener(this);
         spinner1.setVisibility(View.VISIBLE);
 
+
+
+        ////////////////////////////////////////////////////////////////
+
+
+        addAlarmFab = findViewById(R.id.add_alarm_fab);
+        addPersonFab = findViewById(R.id.add_person_fab);
+        addActionFab = findViewById(R.id.add_fab);
+
+        addAlarmText = findViewById(R.id.add_alarm_action_text);
+        addPersonFabText = findViewById(R.id.add_person_action_text);
+
+        addAlarmFab.setVisibility(View.GONE);
+        addPersonFab.setVisibility(View.GONE);
+        addAlarmText.setVisibility(View.GONE);
+        addPersonFabText.setVisibility(View.GONE);
+
+        isAllFABVisible = false;
+
+        Log.e(TAG, "Initilize Variables Done");
+        addActionFab.shrink();
+
+        addActionFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e(TAG, "Add Action Fab Set on Click Listener");
+                if (!isAllFABVisible) {
+                    Log.e(TAG, "ALL FAB AVBLE IF");
+                    ExpandFloatingActionButton();
+                } else {
+                    Log.e(TAG, "ALL FAB AVBLE ELSE");
+                    ShrinkFloatingActionButton();
+                }
+            }
+        });
+
+        addPersonFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e(TAG, "Add Person Click Called");
+                Toast.makeText(MainActivity.this, "Person Added", Toast.LENGTH_SHORT).show();
+                ShrinkFloatingActionButton();
+            }
+        });
+
+        addAlarmFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e(TAG, "Add Alarm Click Called");
+                Toast.makeText(MainActivity.this, "Alarm Added", Toast.LENGTH_SHORT).show();
+                ShrinkFloatingActionButton();
+            }
+        });
+
+        ////////////////////////////////////////////////////////////////
 
         ArrayList<String> country=new ArrayList<String>();
         country.add("India");
@@ -305,6 +366,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onTouchEvent(MotionEvent event) {
         Toast.makeText(this, "INSIDE ONTOUCH", Toast.LENGTH_SHORT).show();
         textview1.setText("onTouch Called");
+        if( isAllFABVisible ) {
+            ShrinkFloatingActionButton();
+        }
         return super.onTouchEvent(event);
     }
 
@@ -349,5 +413,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
         Toast.makeText ( getApplicationContext(), "SPINNER NOTHING CALLED", Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void ExpandFloatingActionButton()
+    {
+        addAlarmFab.show();
+        addPersonFab.show();
+        addAlarmText.setVisibility(View.VISIBLE);
+        addPersonFabText.setVisibility(View.VISIBLE);
+
+        // now extend the Ex FAB
+        addActionFab.extend();
+
+        isAllFABVisible =true;
+    }
+
+
+    public void ShrinkFloatingActionButton()
+    {
+        addAlarmFab.hide();
+        addPersonFab.hide();
+        addAlarmText.setVisibility(View.GONE);
+        addPersonFabText.setVisibility(View.GONE);
+
+        addActionFab.shrink();
+
+        isAllFABVisible = false;
     }
 }
