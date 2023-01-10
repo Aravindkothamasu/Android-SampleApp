@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,6 +46,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private AppBarConfiguration appBarConfiguration;
     // private ActivityMainBinding binding;
+    private static final String TAG = "SampleAppAct";
+
     private TextView textview1;
     private EditText edittext1;
     Button B1, B2, B3;
@@ -53,28 +57,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     RadioGroup RG1;
     RadioButton RGb1;
-    private static final String TAG = "SampleAppAct";
 
+    ArrayList<String> country=new ArrayList<String>();
 
+    // Progess Bar for Button 2 is Clicked
     private ProgressDialog progress;
 
     Spinner spinner1;
 
     broadcast airplaneModeChangeReceiver = new broadcast();
     ServiceManager serv = new ServiceManager();
-
-
-
-    // NetworkBroadcast NetBroadcast = new NetworkBroadcast();
-    // TimePicker timepicker1;
-
     String Str = null;
 
     // Floating Action Button Decleration
     FloatingActionButton addAlarmFab, addPersonFab;
     ExtendedFloatingActionButton addActionFab;
     TextView addAlarmText, addPersonFabText;
-    Boolean isAllFABVisible = true;
+    Boolean isAllFABVisible = false;
+
+    // Floating Action Button Animation Decleartion.
+    Animation rotateOpen, rotateClose;
+    Animation fromBottom, toBottom;
+
 
 
     @Override
@@ -82,68 +86,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         //setSupportActionBar(binding.toolbar);
         setContentView(R.layout.activity_main);
-
-        Log.e(TAG, "In Oncreate Called");
+        Toast.makeText(MainActivity.this, "OnCreat Called", Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "In OnCreate Called");
         // Button Defining
-        B1 = (Button) findViewById(R.id.Button1);
-        B2 = (Button) findViewById(R.id.Button2);
-        B3 = (Button) findViewById(R.id.Button3);
 
-        // Text View Defining
-        textview1 = (TextView) findViewById(R.id.SampleText);
-
-        // Edit Text Box Defining
-        edittext1 = (EditText)findViewById(R.id.editText1);
-
-        // CheckBox Defining
-        C1= (CheckBox)findViewById(R.id.CheckBox1);
-
-        // Toggle Button
-        T1 = (ToggleButton)findViewById(R.id.ToggleButton1);
-
-        // Radio Button
-        R1 = (RadioButton)findViewById(R.id.RadioButton1);
-
-        // Radio Group
-        RG1 = (RadioGroup)findViewById(R.id.RadioGroup1);
-
-
-        // Spinner
-        spinner1 = (Spinner)findViewById(R.id.spinner1);
-        spinner1.setOnItemSelectedListener(this);
-        spinner1.setVisibility(View.VISIBLE);
-
-
+        InitVariables();
 
         ////////////////////////////////////////////////////////////////
-
-
-        addAlarmFab = findViewById(R.id.add_alarm_fab);
-        addPersonFab = findViewById(R.id.add_person_fab);
-        addActionFab = findViewById(R.id.add_fab);
-
-        addAlarmText = findViewById(R.id.add_alarm_action_text);
-        addPersonFabText = findViewById(R.id.add_person_action_text);
-
-        addAlarmFab.setVisibility(View.GONE);
-        addPersonFab.setVisibility(View.GONE);
-        addAlarmText.setVisibility(View.GONE);
-        addPersonFabText.setVisibility(View.GONE);
-
-        isAllFABVisible = false;
-
-        Log.e(TAG, "Initilize Variables Done");
+        Log.e(TAG, "Initalise Variables Done");
         addActionFab.shrink();
 
         addActionFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e(TAG, "Add Action Fab Set on Click Listener");
+                Log.e(TAG, "Add Action Fab Set on Click Listener "+isAllFABVisible);
+                Log.e(TAG, "isALL FAB AVALIABLE "+isAllFABVisible);
+
                 if (!isAllFABVisible) {
-                    Log.e(TAG, "ALL FAB AVBLE IF");
                     ExpandFloatingActionButton();
                 } else {
-                    Log.e(TAG, "ALL FAB AVBLE ELSE");
                     ShrinkFloatingActionButton();
                 }
             }
@@ -154,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View view) {
                 Log.e(TAG, "Add Person Click Called");
                 Toast.makeText(MainActivity.this, "Person Added", Toast.LENGTH_SHORT).show();
-                ShrinkFloatingActionButton();
+               // CheckForFABExpand();
             }
         });
 
@@ -163,31 +124,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View view) {
                 Log.e(TAG, "Add Alarm Click Called");
                 Toast.makeText(MainActivity.this, "Alarm Added", Toast.LENGTH_SHORT).show();
-                ShrinkFloatingActionButton();
+                CheckForFABExpand();
             }
         });
-
         ////////////////////////////////////////////////////////////////
-
-        ArrayList<String> country=new ArrayList<String>();
-        country.add("India");
-        country.add("US");
-        country.add("Russia");
-        country.add("Germany");
-        country.add("Ukraine");
-        country.add("China");
-        country.add("Italy");
-        country.add("Canada");
-        country.add("Nepal");
-        country.add("Sri Lanka");
-        country.add("Bangkok");
-
 
         ArrayAdapter<String> CountryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country);
         spinner1.setAdapter(CountryAdapter);
 
         // timepicker1 = (TimePicker)findViewById(R.id.timepicker1);
-        Toast.makeText(this, "INSIDE ONCREAT", Toast.LENGTH_SHORT).show();
 
         Log.e(TAG, "In Oncreate Called");
         Str = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -371,9 +316,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onTouchEvent(MotionEvent event) {
         Toast.makeText(this, "INSIDE ONTOUCH", Toast.LENGTH_SHORT).show();
         textview1.setText("onTouch Called");
-        if( isAllFABVisible ) {
-            ShrinkFloatingActionButton();
-        }
+        CheckForFABExpand();
         return super.onTouchEvent(event);
     }
 
@@ -420,35 +363,118 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText ( getApplicationContext(), "SPINNER NOTHING CALLED", Toast.LENGTH_SHORT).show();
     }
 
-    public void CheckForFABExpand()
-    {
+
+    public void InitVariables() {
+        B1 = (Button) findViewById(R.id.Button1);
+        B2 = (Button) findViewById(R.id.Button2);
+        B3 = (Button) findViewById(R.id.Button3);
+
+        // Text View Defining
+        textview1 = (TextView) findViewById(R.id.SampleText);
+
+        // Edit Text Box Defining
+        edittext1 = (EditText)findViewById(R.id.editText1);
+
+        // CheckBox Defining
+        C1= (CheckBox)findViewById(R.id.CheckBox1);
+
+        // Toggle Button
+        T1 = (ToggleButton)findViewById(R.id.ToggleButton1);
+
+        // Radio Button
+        R1 = (RadioButton)findViewById(R.id.RadioButton1);
+
+        // Radio Group
+        RG1 = (RadioGroup)findViewById(R.id.RadioGroup1);
+
+
+        // Spinner
+        spinner1 = (Spinner)findViewById(R.id.spinner1);
+        spinner1.setOnItemSelectedListener(this);
+        spinner1.setVisibility(View.VISIBLE);
+
+
+        country.add("India");
+        country.add("US");
+        country.add("Russia");
+        country.add("Germany");
+        country.add("Ukraine");
+        country.add("China");
+        country.add("Italy");
+        country.add("Canada");
+        country.add("Nepal");
+        country.add("Sri Lanka");
+        country.add("Bangkok");
+
+
+        addAlarmFab = findViewById(R.id.add_alarm_fab);
+        addPersonFab = findViewById(R.id.add_person_fab);
+        addActionFab = findViewById(R.id.add_fab);
+
+        addAlarmText = findViewById(R.id.add_alarm_action_text);
+        addPersonFabText = findViewById(R.id.add_person_action_text);
+
+        addAlarmFab.setVisibility(View.GONE);
+        addPersonFab.setVisibility(View.GONE);
+        addAlarmText.setVisibility(View.GONE);
+        addPersonFabText.setVisibility(View.GONE);
+
+        isAllFABVisible = false;
+
+        rotateOpen = AnimationUtils.loadAnimation( MainActivity.this, R.anim.rotate_open_anim);
+        rotateClose = AnimationUtils.loadAnimation( MainActivity.this, R.anim.rotate_close_anim );
+        fromBottom = AnimationUtils.loadAnimation( MainActivity.this, R.anim.from_bottom_anim );
+        toBottom = AnimationUtils.loadAnimation( MainActivity.this, R.anim.to_bottom_anim );
+
+
+    }
+
+    // FAB Expanding and Shrink Functions
+
+    public void CheckForFABExpand() {
         if( isAllFABVisible ) {
             ShrinkFloatingActionButton();
+            Log.e(TAG, "CheckForFABExpand Called "+isAllFABVisible);
         }
     }
 
-    public void ExpandFloatingActionButton()
-    {
+    public void ExpandFloatingActionButton() {
+        /*
+        // Methods used for without animation.
         addAlarmFab.show();
         addPersonFab.show();
-        addAlarmText.setVisibility(View.VISIBLE);
-        addPersonFabText.setVisibility(View.VISIBLE);
-
         // now extend the Ex FAB
         addActionFab.extend();
+         */
+
+        addAlarmFab.startAnimation(fromBottom);
+        addPersonFab.startAnimation(fromBottom);
+        addActionFab.startAnimation(rotateOpen);
+
+        addAlarmFab.setVisibility(View.VISIBLE);
+        addPersonFab.setVisibility(View.VISIBLE);
+        addAlarmText.setVisibility(View.VISIBLE);
+        addPersonFabText.setVisibility(View.VISIBLE);
 
         isAllFABVisible =true;
     }
 
 
-    public void ShrinkFloatingActionButton()
-    {
+    public void ShrinkFloatingActionButton() {
+        /*
+        // Methods used for without animation.
         addAlarmFab.hide();
         addPersonFab.hide();
+        addActionFab.shrink();
+         */
+        addAlarmFab.startAnimation(toBottom);
+        addPersonFab.startAnimation(toBottom);
+        addActionFab.startAnimation(rotateClose);
+
+        addAlarmFab.setVisibility(View.INVISIBLE);
+        addPersonFab.setVisibility(View.INVISIBLE);
         addAlarmText.setVisibility(View.GONE);
         addPersonFabText.setVisibility(View.GONE);
-
-        addActionFab.shrink();
 
         isAllFABVisible = false;
     }

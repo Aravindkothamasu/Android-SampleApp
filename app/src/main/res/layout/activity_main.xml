@@ -154,9 +154,9 @@
         android:layout_gravity="end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Actions"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:text="ACT"
         app:icon="@drawable/add_symbol"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -171,6 +171,7 @@
         app:layout_constraintBottom_toTopOf="@+id/add_fab"
         app:layout_constraintEnd_toEndOf="@+id/add_fab"
         app:srcCompat="@drawable/add_alarm"
+        android:visibility="visible"
         android:contentDescription="@string/app_name" />
     <!--Action name text for the add alarm button-->
 
@@ -196,6 +197,7 @@
         app:layout_constraintEnd_toEndOf="@+id/add_alarm_fab"
         app:layout_constraintStart_toStartOf="@+id/add_alarm_fab"
         app:srcCompat="@drawable/add_person"
+        android:visibility="visible"
         android:contentDescription="@string/app_name" />
     <!--Action name text for the add person button-->
     <TextView
@@ -207,4 +209,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/add_person_fab"
         app:layout_constraintEnd_toStartOf="@+id/add_person_fab"
         app:layout_constraintTop_toTopOf="@+id/add_person_fab" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
