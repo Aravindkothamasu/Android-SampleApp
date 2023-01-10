@@ -206,6 +206,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Boolean c, r, t;
                 int Rg=0;
 
+                CheckForFABExpand();
+
                 t=T1.isChecked();
                 c=C1.isChecked();
                 r=R1.isChecked();
@@ -236,6 +238,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 t=T1.isChecked();
                 c=C1.isChecked();
                 r=R1.isChecked();
+
+                CheckForFABExpand();
 
                 B2.setText( "SQUEEZE " + getString(R.string.BUT_2_NAME) );
                 Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
@@ -283,6 +287,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         B2.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                CheckForFABExpand();
+
                 Toast.makeText(MainActivity.this, "BUT 3 ON KEY LISTENER", Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -298,6 +304,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 c=C1.isChecked();
                 r=R1.isChecked();
 
+                CheckForFABExpand();
+
                 B3.setText( "SQUEEZE " + getString(R.string.BUT_3_NAME) );
                 Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
                 textview1.setText("BUT3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r);
@@ -311,18 +319,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Log.e( "B3.OnClick", "NET NABLE");
                 }
             }
-
-            public boolean onLongClick(View V)
-            {
-                Toast.makeText(MainActivity.this, "BUT 3 ON LONG CLICK", Toast.LENGTH_SHORT).show();
-                return true;
-            }
         });
+
 
         B3.setOnLongClickListener( new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View V)
             {
+                CheckForFABExpand();
+                B3.setText( "MORE SQUEEZE " + getString(R.string.BUT_3_NAME) );
                 Toast.makeText(MainActivity.this, "BUT 3 ON LONG CLICK", Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -415,6 +420,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText ( getApplicationContext(), "SPINNER NOTHING CALLED", Toast.LENGTH_SHORT).show();
     }
 
+    public void CheckForFABExpand()
+    {
+        if( isAllFABVisible ) {
+            ShrinkFloatingActionButton();
+        }
+    }
 
     public void ExpandFloatingActionButton()
     {
