@@ -13,6 +13,8 @@
     <string name="BUT_2_NAME">Trisha</string>
     <string name="BUT_3_NAME">Ivaya</string>
 
+    <!-- TAG Decleration -->
+    <string name="TAG">SampleAppAct</string>
 
 
     <string name="hello_first_fragment">Hello first fragment</string>

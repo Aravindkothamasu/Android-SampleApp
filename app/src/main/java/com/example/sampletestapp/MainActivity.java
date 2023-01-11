@@ -46,7 +46,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private AppBarConfiguration appBarConfiguration;
     // private ActivityMainBinding binding;
-    private static final String TAG = "SampleAppAct";
 
     private TextView textview1;
     private EditText edittext1;
@@ -87,20 +86,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //setSupportActionBar(binding.toolbar);
         setContentView(R.layout.activity_main);
         Toast.makeText(MainActivity.this, "OnCreat Called", Toast.LENGTH_SHORT).show();
-        Log.e(TAG, "In OnCreate Called");
+        Log.e( getString(R.string.TAG), "In OnCreate Called");
         // Button Defining
 
         InitVariables();
 
         ////////////////////////////////////////////////////////////////
-        Log.e(TAG, "Initalise Variables Done");
+        Log.e( getString(R.string.TAG), "Initalise Variables Done");
         addActionFab.shrink();
 
         addActionFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e(TAG, "Add Action Fab Set on Click Listener "+isAllFABVisible);
-                Log.e(TAG, "isALL FAB AVALIABLE "+isAllFABVisible);
+                Log.e( getString(R.string.TAG), "Add Action Fab Set on Click Listener "+isAllFABVisible);
+                Log.e( getString(R.string.TAG), "isALL FAB AVALIABLE "+isAllFABVisible);
 
                 if (!isAllFABVisible) {
                     ExpandFloatingActionButton();
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         addPersonFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e(TAG, "Add Person Click Called");
+                Log.e( getString(R.string.TAG), "Add Person Click Called");
                 Toast.makeText(MainActivity.this, "Person Added", Toast.LENGTH_SHORT).show();
                // CheckForFABExpand();
             }
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         addAlarmFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e(TAG, "Add Alarm Click Called");
+                Log.e( getString(R.string.TAG), "Add Alarm Click Called");
                 Toast.makeText(MainActivity.this, "Alarm Added", Toast.LENGTH_SHORT).show();
                 CheckForFABExpand();
             }
@@ -134,10 +133,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // timepicker1 = (TimePicker)findViewById(R.id.timepicker1);
 
-        Log.e(TAG, "In Oncreate Called");
+        Log.e( getString(R.string.TAG), "In Oncreate Called");
         Str = Environment.getExternalStorageDirectory().getAbsolutePath();
         Toast.makeText(this, Str, Toast.LENGTH_SHORT).show();
-        Log.e(TAG, "After String of Enviornment");
+        Log.e( getString(R.string.TAG), "After String of Enviornment");
 
 
 
@@ -169,6 +168,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Toast.makeText(MainActivity.this, "BUT 1 : " + edittext1.getText().toString() + " NO SWITCH CLICKED", Toast.LENGTH_SHORT).show();
                 }
 
+                Log.e( getString(R.string.TAG), "Before Starting Second Activity in First Activity");
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+                Log.e( getString(R.string.TAG), "After Starting Second Activity in First Activity");
                 // Toast.makeText(MainActivity.this, "BUT 1 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
                 // textview1.setText("BUT1 "+edittext1.getText().toString()+" "+c+" "+t+" "+r)
             }
@@ -258,10 +261,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 if( serv.isNetworkAvaliable(MainActivity.this) == true ) {
                     textview1.setText( "SERV NET ABLE");
-                    Log.e( "B3.OnClick", "NET ABLE");
+                    Log.e( getString(R.string.TAG), "NET ABLE");
                 } else {
                     textview1.setText("SERV NET NABLE");
-                    Log.e( "B3.OnClick", "NET NABLE");
+                    Log.e( getString(R.string.TAG), "NET NABLE");
                 }
             }
         });
@@ -434,7 +437,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void CheckForFABExpand() {
         if( isAllFABVisible ) {
             ShrinkFloatingActionButton();
-            Log.e(TAG, "CheckForFABExpand Called "+isAllFABVisible);
+            Log.e( getString(R.string.TAG), "CheckForFABExpand Called "+isAllFABVisible);
         }
     }
 
