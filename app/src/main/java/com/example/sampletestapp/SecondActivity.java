@@ -14,7 +14,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        Log.e( getString(R.string.TAG), "SecondActivity OnCreate Called" );
+        Log.e( getString(R.string.TAG2), "SecondActivity OnCreate Called" );
         SATextView1 = ( TextView)  findViewById(R.id.SecondtextView1);
         SATextView1.setText("Poora Puka");
     }
@@ -22,7 +22,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Toast.makeText(SecondActivity.this, "SA onTouch Called", Toast.LENGTH_LONG).show();
-        Log.e( getString(R.string.TAG), "SecondActivity onTouch Called" );
+        Log.e( getString(R.string.TAG2), "SecondActivity onTouch Called" );
         SATextView1.setText("Madda Guddu");
         return super.onTouchEvent(event);
     }

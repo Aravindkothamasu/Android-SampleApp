@@ -14,7 +14,9 @@
     <string name="BUT_3_NAME">Ivaya</string>
 
     <!-- TAG Decleration -->
-    <string name="TAG">SampleAppAct</string>
+    <string name="TAG1">ACTVITY1</string>
+    <string name="TAG2">ACTVITY2</string>
+    <string name="TAG3">ACTVITY3</string>
 
 
     <string name="hello_first_fragment">Hello first fragment</string>
