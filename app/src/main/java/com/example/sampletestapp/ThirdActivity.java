@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,5 +44,13 @@ public class ThirdActivity extends AppCompatActivity {
                 RelLytTxtVw1.setText("BUT2 CLICK");
             }}
         );
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e( getString(R.string.TAG3), "onTouch Called" );
+        Toast.makeText(this, "TAG3 ONTOUCH", Toast.LENGTH_SHORT).show();
+        RelLytTxtVw1.setText("A3 ONTOUCH");
+        return super.onTouchEvent(event);
     }
 }

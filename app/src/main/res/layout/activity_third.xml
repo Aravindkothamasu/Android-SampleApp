@@ -38,9 +38,10 @@
     <TextView
         android:id="@+id/RelLytTxtVw1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="270dp"
+        android:gravity="bottom|center"
         android:textSize="25dp"
+        android:textColor="@color/black"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="ARAVIND"/>
 
