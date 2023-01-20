@@ -9,6 +9,7 @@
     android:paddingLeft="15dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
+    android:background="@drawable/nandhi_hills_aravind_pic"
     tools:context=".ThirdActivity">
 
 
