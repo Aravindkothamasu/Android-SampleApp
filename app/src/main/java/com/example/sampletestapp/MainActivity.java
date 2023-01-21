@@ -104,7 +104,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View view) {
                 Log.e( getString(R.string.TAG1), "Add Person Click Called");
                 Toast.makeText(MainActivity.this, "Person Added", Toast.LENGTH_SHORT).show();
-               // CheckForFABExpand();
+                CheckForFABExpand();
+
+                Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
+                startActivity(intent);
             }
         });
 

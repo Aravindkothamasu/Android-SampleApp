@@ -17,6 +17,8 @@
     <string name="TAG1">ACTVITY1</string>
     <string name="TAG2">ACTVITY2</string>
     <string name="TAG3">ACTVITY3</string>
+    <string name="TAG4">ACTVITY4</string>
+
 
 
     <string name="hello_first_fragment">Hello first fragment</string>
