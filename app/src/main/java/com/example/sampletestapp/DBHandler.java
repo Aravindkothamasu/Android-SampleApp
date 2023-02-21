@@ -1,7 +1,5 @@
 package com.example.sampletestapp;
 
-import static android.provider.Settings.System.getString;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,7 +10,7 @@ import android.util.Log;
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "coursedb";
+    private static final String DB_NAME = "SampleDB .sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
@@ -40,13 +38,16 @@ public class DBHandler extends SQLiteOpenHelper {
         // an sqlite query and we are
         // setting our column names
         // along with their data types.
-        Log.e( "TEST", "DB_HANDLER CALLED");
+        Log.e( "DBHAND", "DB_HANDLER CALLED");
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COL + " TEXT,"
                 + DURATION_COL + " TEXT,"
                 + DESCRIPTION_COL + " TEXT,"
                 + TRACKS_COL + " TEXT)";
+
+        Log.e( "DBHAND", query);
+
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(query);
@@ -57,6 +58,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
+        Log.e( "DBHAND", "addNewCource Called");
         SQLiteDatabase db = this.getWritableDatabase();
         // on below line we are creating a
         // variable for content values.
@@ -73,11 +75,13 @@ public class DBHandler extends SQLiteOpenHelper {
         // at last we are closing our
         // database after adding database.
         db.close();
+        Log.e( "DBHAND", "addNewCourse Close Called");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.
+        Log.e( "DBHAND", "onUpgrade Called");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }

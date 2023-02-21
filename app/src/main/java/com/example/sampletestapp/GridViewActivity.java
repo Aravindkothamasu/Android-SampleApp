@@ -1,8 +1,6 @@
 package com.example.sampletestapp;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
+
+
 
 public class GridViewActivity extends AppCompatActivity {
     GridView GrdLytGrdVw1;
