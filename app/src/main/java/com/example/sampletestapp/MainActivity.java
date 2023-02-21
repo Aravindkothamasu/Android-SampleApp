@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Toast.makeText(MainActivity.this, "Alarm Added", Toast.LENGTH_SHORT).show();
                 CheckForFABExpand();
 
-                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                Intent intent = new Intent(MainActivity.this, DatabaseActivity.class);
                 startActivity(intent);
             }
         });
