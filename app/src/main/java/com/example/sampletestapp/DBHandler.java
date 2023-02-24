@@ -10,7 +10,7 @@ import android.util.Log;
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "SampleDB_1.sqlite";
+    private static final String DB_NAME = "SampleDB_3.sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
@@ -19,14 +19,9 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String ID_COL = "id";
     // below variable is for date of payment done.
     private static final String DATE_COL = "Date";
-    // below variable is for our course name column
-    private static final String NAME_COL = "name";
-    // below variable id for our course duration column.
-    private static final String DURATION_COL = "duration";
-    // below variable for our course description column.
-    private static final String DESCRIPTION_COL = "description";
-    // below variable is for our course tracks column.
-    private static final String TRACKS_COL = "tracks";
+    // below variable is for our Amount to be enter
+    private static final String AMOUNT_COL = "Amount";
+
 
     // creating a constructor for our database handler.
     public DBHandler(Context context) {
@@ -44,10 +39,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATE_COL + " TEXT,"
-                + NAME_COL + " TEXT,"
-                + DURATION_COL + " TEXT,"
-                + DESCRIPTION_COL + " TEXT,"
-                + TRACKS_COL + " TEXT)";
+                + AMOUNT_COL + " INTEGER)";
 
         Log.e( "DBHAND", query);
 
@@ -57,7 +49,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewCourse(String courseName, String courseDuration, String courseDescription, String courseTracks, CurrentDate selectedDate) {
+    public void addNewCourse(String courseName, CurrentDate selectedDate) {
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
@@ -73,10 +65,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // on below line we are passing all values
         // along with its key and value pair.
         values.put(DATE_COL, StringDate );
-        values.put(NAME_COL, courseName);
-        values.put(DURATION_COL, courseDuration);
-        values.put(DESCRIPTION_COL, courseDescription);
-        values.put(TRACKS_COL, courseTracks);
+        values.put(AMOUNT_COL, courseName);
         // after adding all values we are passing
         // content values to our table.
         db.insert(TABLE_NAME, null, values);

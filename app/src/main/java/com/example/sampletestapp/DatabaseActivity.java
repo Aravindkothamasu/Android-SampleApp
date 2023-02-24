@@ -25,7 +25,7 @@ class CurrentDate {
     }
 }
 public class DatabaseActivity extends AppCompatActivity {
-    private EditText courseNameEdt, courseTracksEdt, courseDurationEdt, courseDescriptionEdt;
+    private EditText courseNameEdt;
     private Button addCourseBtn;
     private DBHandler dbHandler;
     private CalendarView calendarDate;
@@ -40,9 +40,6 @@ public class DatabaseActivity extends AppCompatActivity {
         // initializing all our variables.
         selectedDate         = new CurrentDate(0, 0, 0);
         courseNameEdt        = findViewById(R.id.idEdtCoureName);
-        courseTracksEdt      = findViewById(R.id.idEdtCourseTracks);
-        courseDurationEdt    = findViewById(R.id.idEdtCourseDuration);
-        courseDescriptionEdt = findViewById(R.id.idEdtCourseDescription);
         addCourseBtn         = findViewById(R.id.idBtnAddCourse);
         calendarDate         = findViewById(R.id.idCalendarDate);
 
@@ -68,15 +65,13 @@ public class DatabaseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // below line is to get data from all edit text fields.
                 String courseName = courseNameEdt.getText().toString();
-                String courseTracks = courseTracksEdt.getText().toString();
-                String courseDuration = courseDurationEdt.getText().toString();
-                String courseDescription = courseDescriptionEdt.getText().toString();
+
 
                 if( selectedDate.Year == 0 ) {
                     selectedDate = GetCurrDate(calendarDate);
                 }
                 // validating if the text fields are empty or not.
-                if (courseName.isEmpty() && courseTracks.isEmpty() && courseDuration.isEmpty() && courseDescription.isEmpty() && selectedDate.Year != 0) {
+                if (courseName.isEmpty() && selectedDate.Year != 0) {
                     Toast.makeText(DatabaseActivity.this, "Please enter all the data..", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -85,13 +80,10 @@ public class DatabaseActivity extends AppCompatActivity {
                 // course to sqlite data and pass all our values to it.
                 Log.e(getString(R.string.DB), selectedDate.DayOfMonth + "/" + selectedDate.Month + "/" + selectedDate.Year);
 
-                dbHandler.addNewCourse(courseName, courseDuration, courseDescription, courseTracks, selectedDate);
+                dbHandler.addNewCourse(courseName, selectedDate);
                 // after adding the data we are displaying a toast message.
                 Toast.makeText(DatabaseActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
                 courseNameEdt.setText("");
-                courseDurationEdt.setText("");
-                courseTracksEdt.setText("");
-                courseDescriptionEdt.setText("");
                 calendarDate.setDate(calendarDate.getDate());
                 selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
             }
