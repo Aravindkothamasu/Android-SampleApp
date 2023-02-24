@@ -10,13 +10,15 @@ import android.util.Log;
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "SampleDB .sqlite";
+    private static final String DB_NAME = "SampleDB_1.sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
     private static final String TABLE_NAME = "mycourses";
     // below variable is for our id column.
     private static final String ID_COL = "id";
+    // below variable is for date of payment done.
+    private static final String DATE_COL = "Date";
     // below variable is for our course name column
     private static final String NAME_COL = "name";
     // below variable id for our course duration column.
@@ -41,6 +43,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Log.e( "DBHAND", "DB_HANDLER CALLED");
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DATE_COL + " TEXT,"
                 + NAME_COL + " TEXT,"
                 + DURATION_COL + " TEXT,"
                 + DESCRIPTION_COL + " TEXT,"
@@ -54,17 +57,22 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewCourse(String courseName, String courseDuration, String courseDescription, String courseTracks, long selectedDate) {
+    public void addNewCourse(String courseName, String courseDuration, String courseDescription, String courseTracks, CurrentDate selectedDate) {
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
-        Log.e( "DBHAND", "addNewCource Called "+selectedDate);
+        String StringDate;
+
+        StringDate = Integer.toString(selectedDate.DayOfMonth) + "/" + Integer.toString(selectedDate.Month) + "/" + Integer.toString(selectedDate.Year);
+        Log.e( "DBHAND", "addNewCource Called " + StringDate );
+
         SQLiteDatabase db = this.getWritableDatabase();
         // on below line we are creating a
         // variable for content values.
         ContentValues values = new ContentValues();
         // on below line we are passing all values
         // along with its key and value pair.
+        values.put(DATE_COL, StringDate );
         values.put(NAME_COL, courseName);
         values.put(DURATION_COL, courseDuration);
         values.put(DESCRIPTION_COL, courseDescription);
