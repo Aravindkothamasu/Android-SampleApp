@@ -3,10 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
-    android:weightSum="5"
+    android:layout_height="match_parent"
+    android:weightSum="6"
     android:orientation="vertical"
     tools:context=".DatabaseActivity">
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/idCalendarDate"
+        android:layout_weight="1" />
 
     <!--Edit text to enter course name-->
     <EditText
