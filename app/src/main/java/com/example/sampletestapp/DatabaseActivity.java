@@ -25,8 +25,8 @@ class CurrentDate {
     }
 }
 public class DatabaseActivity extends AppCompatActivity {
-    private EditText courseNameEdt;
-    private Button addCourseBtn;
+    private EditText AmountEdt, ItemPuraseEdt;
+    private Button addPurchaseBtn;
     private DBHandler dbHandler;
     private CalendarView calendarDate;
     CurrentDate selectedDate;
@@ -39,8 +39,9 @@ public class DatabaseActivity extends AppCompatActivity {
         Log.e( getString(R.string.DB), "OnCreate Called");
         // initializing all our variables.
         selectedDate         = new CurrentDate(0, 0, 0);
-        courseNameEdt        = findViewById(R.id.idEdtCoureName);
-        addCourseBtn         = findViewById(R.id.idBtnAddCourse);
+        ItemPuraseEdt        = findViewById(R.id.idItem);
+        AmountEdt            = findViewById(R.id.idAmount);
+        addPurchaseBtn       = findViewById(R.id.idBtnAddPurchase);
         calendarDate         = findViewById(R.id.idCalendarDate);
 
         // creating a new dbhandler class
@@ -60,18 +61,18 @@ public class DatabaseActivity extends AppCompatActivity {
             }
         });
         // below line is to add on click listener for our add course button.
-        addCourseBtn.setOnClickListener(new View.OnClickListener() {
+        addPurchaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // below line is to get data from all edit text fields.
-                String courseName = courseNameEdt.getText().toString();
-
+                String enteredAmt  = AmountEdt.getText().toString();
+                String enteredItem = ItemPuraseEdt.getText().toString();
 
                 if( selectedDate.Year == 0 ) {
                     selectedDate = GetCurrDate(calendarDate);
                 }
                 // validating if the text fields are empty or not.
-                if (courseName.isEmpty() && selectedDate.Year != 0) {
+                if ( enteredAmt.isEmpty() && enteredItem.isEmpty() && selectedDate.Year != 0) {
                     Toast.makeText(DatabaseActivity.this, "Please enter all the data..", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -80,10 +81,11 @@ public class DatabaseActivity extends AppCompatActivity {
                 // course to sqlite data and pass all our values to it.
                 Log.e(getString(R.string.DB), selectedDate.DayOfMonth + "/" + selectedDate.Month + "/" + selectedDate.Year);
 
-                dbHandler.addNewCourse(courseName, selectedDate);
+                dbHandler.addNewCourse( enteredAmt, enteredItem, selectedDate);
                 // after adding the data we are displaying a toast message.
                 Toast.makeText(DatabaseActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
-                courseNameEdt.setText("");
+                AmountEdt.setText("");
+                ItemPuraseEdt.setText("");
                 calendarDate.setDate(calendarDate.getDate());
                 selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
             }

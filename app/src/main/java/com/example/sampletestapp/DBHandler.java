@@ -10,7 +10,7 @@ import android.util.Log;
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "SampleDB_3.sqlite";
+    private static final String DB_NAME = "SampleDB_7.sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
@@ -21,6 +21,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String DATE_COL = "Date";
     // below variable is for our Amount to be enter
     private static final String AMOUNT_COL = "Amount";
+    // below variable is for Item Purchase is used( Anthey Dheniki vadeamo ani)
+    private static final String ITEM_COL = "ItemPurchase";
 
 
     // creating a constructor for our database handler.
@@ -39,7 +41,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATE_COL + " TEXT,"
-                + AMOUNT_COL + " INTEGER)";
+                + AMOUNT_COL + " INTEGER, "
+                + ITEM_COL + " TEXT)";
 
         Log.e( "DBHAND", query);
 
@@ -49,7 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewCourse(String courseName, CurrentDate selectedDate) {
+    public void addNewCourse(String enteredAmt, String enteredItem, CurrentDate selectedDate) {
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
@@ -65,7 +68,8 @@ public class DBHandler extends SQLiteOpenHelper {
         // on below line we are passing all values
         // along with its key and value pair.
         values.put(DATE_COL, StringDate );
-        values.put(AMOUNT_COL, courseName);
+        values.put(AMOUNT_COL, enteredAmt);
+        values.put( ITEM_COL, enteredItem);
         // after adding all values we are passing
         // content values to our table.
         db.insert(TABLE_NAME, null, values);

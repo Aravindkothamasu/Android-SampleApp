@@ -14,23 +14,32 @@
         android:id="@+id/idCalendarDate"
         android:layout_weight="1" />
 
-    <!--Edit text to enter course name-->
+    <!--Edit text to enter Item of Purchase-->
     <EditText
-        android:id="@+id/idEdtCoureName"
+        android:id="@+id/idItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:hint="Dheniki" />
+
+    <!--Edit text to enter Amount-->
+    <EditText
+        android:id="@+id/idAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
         android:inputType="number"
-        android:hint="Enter Amount" />
+        android:hint="Entha" />
 
     <!--button for adding new course-->
     <Button
-        android:id="@+id/idBtnAddCourse"
+        android:id="@+id/idBtnAddPurchase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:text="Add Course"
+        android:text="Add Purchase"
         android:textAllCaps="false" />
 </LinearLayout>
