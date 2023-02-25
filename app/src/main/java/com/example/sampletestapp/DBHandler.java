@@ -10,7 +10,7 @@ import android.util.Log;
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "SampleDB_7.sqlite";
+    private static final String DB_NAME = "SampleDB_8.sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
@@ -41,8 +41,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DATE_COL + " TEXT,"
-                + AMOUNT_COL + " INTEGER, "
-                + ITEM_COL + " TEXT)";
+                + ITEM_COL  + " TEXT, "
+                + AMOUNT_COL + " INTEGER )";
 
         Log.e( "DBHAND", query);
 
@@ -52,7 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // this method is use to add new course to our sqlite database.
-    public void addNewCourse(String enteredAmt, String enteredItem, CurrentDate selectedDate) {
+    public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt ) {
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
         // as we are writing data in our database.
@@ -67,9 +67,9 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         // on below line we are passing all values
         // along with its key and value pair.
-        values.put(DATE_COL, StringDate );
+        values.put(  DATE_COL, StringDate );
+        values.put(  ITEM_COL, enteredItem);
         values.put(AMOUNT_COL, enteredAmt);
-        values.put( ITEM_COL, enteredItem);
         // after adding all values we are passing
         // content values to our table.
         db.insert(TABLE_NAME, null, values);
