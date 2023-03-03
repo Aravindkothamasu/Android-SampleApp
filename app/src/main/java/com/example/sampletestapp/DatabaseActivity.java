@@ -1,9 +1,13 @@
 package com.example.sampletestapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
@@ -90,8 +94,14 @@ public class DatabaseActivity extends AppCompatActivity {
                 ItemPurchaseEdt.setText("");
                 calendarDate.setDate(calendarDate.getDate());
                 selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
+                hideKeyboardFrom( getApplicationContext(), v );
             }
         });
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     static CurrentDate GetCurrDate(CalendarView calendarDate ) {
