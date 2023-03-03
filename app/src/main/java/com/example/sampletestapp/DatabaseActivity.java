@@ -53,11 +53,13 @@ public class DatabaseActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // display the selected date by using a toast
-                Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + 1 + "/" + year, Toast.LENGTH_LONG).show();
-                Log.e(getString(R.string.DB), dayOfMonth + "/" + month + 1 + "/" + year);
+                Toast.makeText(getApplicationContext(), dayOfMonth + "/" + (month+1) + "/" + year, Toast.LENGTH_LONG).show();
+                Log.e(getString(R.string.DB), dayOfMonth + "/" + (month+1) + "/" + year);
                 selectedDate.Year  = year;
                 selectedDate.Month = month+1;
                 selectedDate.DayOfMonth = dayOfMonth;
+                // Log.e(getString(R.string.DB), "ECHCK IT CARE " + selectedDate.DayOfMonth + "/" + selectedDate.Month + "/" + selectedDate.Year);
+
             }
         });
         // below line is to add on click listener for our add course button.

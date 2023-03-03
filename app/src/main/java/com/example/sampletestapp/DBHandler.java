@@ -2,19 +2,24 @@ package com.example.sampletestapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "SampleDB_8.sqlite";
+    private static final String DB_NAME = "SampleDB_4.sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
-    private static final String TABLE_NAME = "mycourses";
+    private String TABLE_NAME ="";
     // below variable is for our id column.
     private static final String ID_COL = "id";
     // below variable is for date of payment done.
@@ -37,53 +42,96 @@ public class DBHandler extends SQLiteOpenHelper {
         // an sqlite query and we are
         // setting our column names
         // along with their data types.
-        Log.e( "DBHAND", "DB_HANDLER CALLED");
+        Log.e( "DB_HANDLER", "OnCreate Called");
+    }
+
+    private void createTable(SQLiteDatabase db, CurrentDate selectedDate ) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DATE_COL + " TEXT,"
+                + DATE_COL + " INTEGER,"
                 + ITEM_COL  + " TEXT, "
                 + AMOUNT_COL + " INTEGER )";
 
-        Log.e( "DBHAND", query);
+        Log.e( "DB_HANDLER", query);
 
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(query);
     }
-
     // this method is use to add new course to our sqlite database.
     public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt ) {
-        // on below line we are creating a variable for
-        // our sqlite database and calling writable method
-        // as we are writing data in our database.
-        String StringDate;
 
-        StringDate = Integer.toString(selectedDate.DayOfMonth) + "/" + Integer.toString(selectedDate.Month) + "/" + Integer.toString(selectedDate.Year);
-        Log.e( "DBHAND", "addNewCource Called " + StringDate );
+        TABLE_NAME = generateTableName(selectedDate);
+        Log.e( "DBHAND", "TABLE_NAME : "+ TABLE_NAME);
 
+        // Log.e( "DB_HANDLER", "Before Calling getWritable Database");
         SQLiteDatabase db = this.getWritableDatabase();
-        // on below line we are creating a
-        // variable for content values.
+        Log.e( "DB_HANDLER", "After Calling getWritable Database "+TABLE_NAME);
+
+        if( false == doesTableExist(db, TABLE_NAME)) {
+            createTable(db, selectedDate);
+        }
+
         ContentValues values = new ContentValues();
-        // on below line we are passing all values
-        // along with its key and value pair.
-        values.put(  DATE_COL, StringDate );
+
+        values.put(  DATE_COL, selectedDate.DayOfMonth );
         values.put(  ITEM_COL, enteredItem);
         values.put(AMOUNT_COL, enteredAmt);
-        // after adding all values we are passing
-        // content values to our table.
+
         db.insert(TABLE_NAME, null, values);
-        // at last we are closing our
-        // database after adding database.
         db.close();
-        Log.e( "DBHAND", "addNewCourse Close Called");
+
+        Log.e( "DB_HANDLER", "addNewCourse Close Called");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.
-        Log.e( "DBHAND", "onUpgrade Called");
+        Log.e( "DB_HANDLER", "onUpgrade Called");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    /*
+    public boolean tableExists(SQLiteDatabase db, String table) {
+        boolean result = false;
+
+        Log.e( "DB_HANDLER", "TABLE NAME : "+table);
+        String sql = "select count(*) xcount from sqlite_master where type='table' and name='"
+                + table + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        if (cursor.getInt(0) > 0)
+            result = true;
+        cursor.close();
+        Log.e( "DB_HANDLER", "istableExits : "+result);
+        return result;
+    }
+     */
+
+    static String generateTableName( CurrentDate selectedDate ) {
+        String TableName;
+        TableName = "TABLE_"+Integer.toString(selectedDate.Month)+"_"+Integer.toString(selectedDate.Year);
+        return TableName;
+    }
+
+    public boolean doesTableExist(SQLiteDatabase db, String tableName) {
+        Log.e( "DB_HANDLER", "TABLE NAME : "+ tableName);
+
+        Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + tableName + "'", null);
+
+        if( db == null ) {
+            Log.e( "DB_HANDLER", "DB IS NULL");
+        }
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                cursor.close();
+                Log.e( "DB_HANDLER", "doesTableExist : true");
+                return true;
+            }
+            cursor.close();
+        }
+        Log.e( "DB_HANDLER", "doesTableExist : false");
+        return false;
     }
 }
