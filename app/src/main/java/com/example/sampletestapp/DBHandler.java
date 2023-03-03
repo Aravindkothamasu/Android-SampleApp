@@ -15,7 +15,7 @@ import java.util.Date;
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
     // below variable is for our database name.
-    private static final String DB_NAME = "SampleDB_4.sqlite";
+    private static final String DB_NAME = "ARAVIND_EXPENSES.sqlite";
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
@@ -60,7 +60,6 @@ public class DBHandler extends SQLiteOpenHelper {
     }
     // this method is use to add new course to our sqlite database.
     public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt ) {
-
         TABLE_NAME = generateTableName(selectedDate);
         Log.e( "DBHAND", "TABLE_NAME : "+ TABLE_NAME);
 
