@@ -90,15 +90,19 @@ public class DatabaseActivity extends AppCompatActivity {
                 dbHandler.addNewCourse( selectedDate, enteredItem, enteredAmt);
                 // after adding the data we are displaying a toast message.
                 Toast.makeText(DatabaseActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
-                AmountEdt.setText("");
-                ItemPurchaseEdt.setText("");
-                calendarDate.setDate(calendarDate.getDate());
-                selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
-                hideKeyboardFrom( getApplicationContext(), v );
+
+                // Clearing all the buffers from the list.
+                clearBuffers(getApplicationContext(), v, AmountEdt, ItemPurchaseEdt, calendarDate, selectedDate );
             }
         });
     }
-
+    static void clearBuffers(Context context, View v, EditText AmountEdt, EditText ItemPurchaseEdt, CalendarView calendarDate, CurrentDate selectedDate ) {
+        AmountEdt.setText("");
+        ItemPurchaseEdt.setText("");
+        calendarDate.setDate(calendarDate.getDate());
+        selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
+        hideKeyboardFrom( context, v );
+    }
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
