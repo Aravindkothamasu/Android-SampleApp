@@ -1,21 +1,23 @@
 package com.example.sampletestapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.TimeZone;
+import java.util.ArrayList;
 
 class CurrentDate {
     int DayOfMonth;
@@ -28,25 +30,27 @@ class CurrentDate {
         Year       = yr;
     }
 }
-public class DatabaseActivity extends AppCompatActivity {
+
+public class DatabaseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    // Variable Declaration.
     private EditText AmountEdt, ItemPurchaseEdt;
     private Button addPurchaseBtn;
     private DBHandler dbHandler;
     private CalendarView calendarDate;
     CurrentDate selectedDate;
+    ArrayList<String> expseSpnerAryLst = new ArrayList<String>();
+    ArrayAdapter<String> expseAdapter;
+    Spinner expseSpner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
-
         Log.e( getString(R.string.DB), "OnCreate Called");
-        // initializing all our variables.
-        selectedDate         = new CurrentDate(0, 0, 0);
-        calendarDate         = findViewById(R.id.idCalendarDate);
-        ItemPurchaseEdt      = findViewById(R.id.idItem);
-        AmountEdt            = findViewById(R.id.idAmount);
-        addPurchaseBtn       = findViewById(R.id.idBtnAddPurchase);
+
+        databaseInitVariables();
 
         // creating a new dbhandler class
         // and passing our context to it.
@@ -63,9 +67,9 @@ public class DatabaseActivity extends AppCompatActivity {
                 selectedDate.Month = month+1;
                 selectedDate.DayOfMonth = dayOfMonth;
                 // Log.e(getString(R.string.DB), "ECHCK IT CARE " + selectedDate.DayOfMonth + "/" + selectedDate.Month + "/" + selectedDate.Year);
-
             }
         });
+
         // below line is to add on click listener for our add course button.
         addPurchaseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,16 +96,43 @@ public class DatabaseActivity extends AppCompatActivity {
                 Toast.makeText(DatabaseActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
 
                 // Clearing all the buffers from the list.
-                clearBuffers(getApplicationContext(), v, AmountEdt, ItemPurchaseEdt, calendarDate, selectedDate );
+                clearBuffers(getApplicationContext(), v, AmountEdt, ItemPurchaseEdt, calendarDate, selectedDate, expseSpner );
             }
         });
     }
-    static void clearBuffers(Context context, View v, EditText AmountEdt, EditText ItemPurchaseEdt, CalendarView calendarDate, CurrentDate selectedDate ) {
+
+    private void databaseInitVariables() {
+        // initializing all our variables.
+        selectedDate         = new CurrentDate(0, 0, 0);
+        calendarDate         = findViewById(R.id.idCalendarDate);
+        ItemPurchaseEdt      = findViewById(R.id.idItem);
+        AmountEdt            = findViewById(R.id.idAmount);
+        addPurchaseBtn       = findViewById(R.id.idBtnAddPurchase);
+
+        // Spinner
+        expseSpner           = (Spinner)findViewById(R.id.idSpinnerExpense);
+        expseSpner.setOnItemSelectedListener(this);
+        expseSpner.setVisibility(View.VISIBLE);
+
+        expseSpnerAryLst.add("Other");
+        expseSpnerAryLst.add("Tea");
+        expseSpnerAryLst.add("Food");
+        expseSpnerAryLst.add("Cig");
+        expseSpnerAryLst.add("Stock Rtn");
+
+        expseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, expseSpnerAryLst);
+        expseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        expseSpner.setAdapter(expseAdapter);
+    }
+
+
+    static void clearBuffers(Context context, View v, EditText AmountEdt, EditText ItemPurchaseEdt, CalendarView calendarDate, CurrentDate selectedDate, Spinner expseSpner ) {
         AmountEdt.setText("");
         ItemPurchaseEdt.setText("");
         calendarDate.setDate(calendarDate.getDate());
         selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
         hideKeyboardFrom( context, v );
+        expseSpner.setSelection(0);
     }
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -124,5 +155,16 @@ public class DatabaseActivity extends AppCompatActivity {
         yr = Integer.parseInt(format.format(selectedDate));
 
         return new CurrentDate(dd, mm, yr);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String item = adapterView.getItemAtPosition(i).toString();
+        Log.e( getString(R.string.DB), "onItemSelected Called "+ item );
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        Log.e( getString(R.string.DB), "onNothingSelected");
     }
 }

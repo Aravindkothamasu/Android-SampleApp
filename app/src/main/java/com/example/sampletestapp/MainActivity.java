@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         InitVariables();
 
         ////////////////////////////////////////////////////////////////
-        Log.e( getString(R.string.TAG1), "Initalise Variables Done");
+        Log.e( getString(R.string.TAG1), "Initalize Variables Done");
         addActionFab.shrink();
 
         addActionFab.setOnClickListener(new View.OnClickListener() {
