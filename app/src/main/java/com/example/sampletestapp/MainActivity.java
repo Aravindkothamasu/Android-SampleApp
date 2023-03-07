@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         //setSupportActionBar(binding.toolbar);
         setContentView(R.layout.activity_main);
-        Toast.makeText(MainActivity.this, "OnCreat Called", Toast.LENGTH_SHORT).show();
         Log.e( getString(R.string.TAG1), "In OnCreate Called");
         // Button Defining
 
@@ -102,8 +101,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         addPersonFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e( getString(R.string.TAG1), "Add Person Click Called");
-                Toast.makeText(MainActivity.this, "Person Added", Toast.LENGTH_SHORT).show();
+                Log.e( getString(R.string.TAG1), "Purchase Stats Click Called");
+                Toast.makeText(MainActivity.this, "Purchase Stats", Toast.LENGTH_SHORT).show();
                 CheckForFABExpand();
 
                 Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
@@ -114,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         addAlarmFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e( getString(R.string.TAG1), "Add Alarm Click Called");
-                Toast.makeText(MainActivity.this, "Alarm Added", Toast.LENGTH_SHORT).show();
+                Log.e( getString(R.string.TAG1), "Add Purchase Click Called");
+                Toast.makeText(MainActivity.this, "Add Purchase", Toast.LENGTH_SHORT).show();
                 CheckForFABExpand();
 
                 Intent intent = new Intent(MainActivity.this, DatabaseActivity.class);
@@ -131,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Log.e( getString(R.string.TAG1), "In Oncreate Called");
         Str = Environment.getExternalStorageDirectory().getAbsolutePath();
-        Toast.makeText(this, Str, Toast.LENGTH_SHORT).show();
         Log.e( getString(R.string.TAG1), "After String of Enviornment");
 
 
@@ -291,7 +289,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(this, "INSIDE ONSTART", Toast.LENGTH_SHORT).show();
         textview1.setText("onStart Called");
         IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         registerReceiver(airplaneModeChangeReceiver, filter);
@@ -300,7 +297,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, "INSIDE ONPAUSE", Toast.LENGTH_SHORT).show();
         textview1.setText("onPause Called");
     }
 
@@ -313,7 +309,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Toast.makeText(this, "INSIDE ONTOUCH", Toast.LENGTH_SHORT).show();
         textview1.setText("onTouch Called");
         CheckForFABExpand();
         return super.onTouchEvent(event);
