@@ -15,25 +15,31 @@
         android:id="@+id/idCalendarDate"
         android:layout_weight="1" />
 
-    <Spinner
-        android:id="@+id/idSpinnerExpense"
-        android:layout_width="250dp"
-        android:layout_height="28dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@android:drawable/progress_horizontal"
-        android:textColor="#9C27B0"
-        android:visibility="visible"
-        app:fontFamily="serif" />
-
-    <!--Edit text to enter Item of Purchase-->
-    <EditText
-        android:id="@+id/idItem"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:hint="Dheniki" />
+        android:weightSum="2">
+
+        <Spinner
+            android:id="@+id/idSpinnerExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:drawable/progress_horizontal"
+            android:textColor="#9C27B0"
+            android:visibility="visible"
+            app:fontFamily="serif" />
+
+        <!--Edit text to enter Item of Purchase-->
+        <EditText
+            android:id="@+id/idItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:hint="Dheniki" />
+    </LinearLayout>
 
     <!--Edit text to enter Amount-->
     <EditText

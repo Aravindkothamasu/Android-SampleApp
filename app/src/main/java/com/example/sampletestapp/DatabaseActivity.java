@@ -38,6 +38,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
     private Button addPurchaseBtn;
     private DBHandler dbHandler;
     private CalendarView calendarDate;
+    String selectedCategory;
     CurrentDate selectedDate;
     ArrayList<String> expseSpnerAryLst = new ArrayList<String>();
     ArrayAdapter<String> expseAdapter;
@@ -82,8 +83,10 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
                     selectedDate = GetCurrDate(calendarDate);
                 }
                 // validating if the text fields are empty or not.
-                if ( enteredAmt != 0 && enteredItem.isEmpty() && selectedDate.Year != 0) {
+                if ( (enteredAmt != 0 && selectedDate.Year != 0) && (enteredItem.isEmpty() && selectedCategory == "Other") ) {
+                    Log.e( getString(R.string.DB), "Please enter all the data");
                     Toast.makeText(DatabaseActivity.this, "Please enter all the data..", Toast.LENGTH_SHORT).show();
+                    clearBuffers(getApplicationContext(), v );
                     return;
                 }
 
@@ -91,12 +94,13 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
                 // course to sqlite data and pass all our values to it.
                 Log.e(getString(R.string.DB), selectedDate.DayOfMonth + "/" + selectedDate.Month + "/" + selectedDate.Year);
 
-                dbHandler.addNewCourse( selectedDate, enteredItem, enteredAmt);
-                // after adding the data we are displaying a toast message.
+                // Calling Add new Course selector
+                dbHandler.addNewCourse( selectedDate, enteredItem, enteredAmt, selectedCategory );
+
                 Toast.makeText(DatabaseActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
 
                 // Clearing all the buffers from the list.
-                clearBuffers(getApplicationContext(), v, AmountEdt, ItemPurchaseEdt, calendarDate, selectedDate, expseSpner );
+                clearBuffers(getApplicationContext(), v );
             }
         });
     }
@@ -126,14 +130,17 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-    static void clearBuffers(Context context, View v, EditText AmountEdt, EditText ItemPurchaseEdt, CalendarView calendarDate, CurrentDate selectedDate, Spinner expseSpner ) {
+    private void clearBuffers(Context context, View v ) {
         AmountEdt.setText("");
         ItemPurchaseEdt.setText("");
         calendarDate.setDate(calendarDate.getDate());
         selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
         hideKeyboardFrom( context, v );
         expseSpner.setSelection(0);
+        selectedCategory = "";
+        Log.e( getString(R.string.DB), "CLEAR BUF CAT "+ selectedCategory);
     }
+
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -159,8 +166,8 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String item = adapterView.getItemAtPosition(i).toString();
-        Log.e( getString(R.string.DB), "onItemSelected Called "+ item );
+        selectedCategory = adapterView.getItemAtPosition(i).toString();
+        Log.e( getString(R.string.DB), "onItemSelected Called "+ selectedCategory );
     }
 
     @Override

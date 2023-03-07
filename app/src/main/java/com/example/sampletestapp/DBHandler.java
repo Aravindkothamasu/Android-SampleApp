@@ -24,6 +24,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String ID_COL = "id";
     // below variable is for date of payment done.
     private static final String DATE_COL = "Date";
+    // below variable is for which category to be enter
+    private static final String CATGRY_COL = "Category";
     // below variable is for our Amount to be enter
     private static final String AMOUNT_COL = "Amount";
     // below variable is for Item Purchase is used( Anthey Dheniki vadeamo ani)
@@ -48,7 +50,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private void createTable(SQLiteDatabase db, CurrentDate selectedDate ) {
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DATE_COL + " INTEGER,"
+                + DATE_COL + " INTEGER, "
+                + CATGRY_COL + " TEXT, "
                 + ITEM_COL  + " TEXT, "
                 + AMOUNT_COL + " INTEGER )";
 
@@ -58,10 +61,11 @@ public class DBHandler extends SQLiteOpenHelper {
         // method to execute above sql query
         db.execSQL(query);
     }
+
     // this method is use to add new course to our sqlite database.
-    public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt ) {
+    public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt, String selectedCategory ) {
         TABLE_NAME = generateTableName(selectedDate);
-        Log.e( "DBHAND", "TABLE_NAME : "+ TABLE_NAME);
+        Log.e( "DBHAND", TABLE_NAME + " :-> "+enteredItem +" | "+enteredAmt+" | "+selectedCategory);
 
         // Log.e( "DB_HANDLER", "Before Calling getWritable Database");
         SQLiteDatabase db = this.getWritableDatabase();
@@ -74,6 +78,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(  DATE_COL, selectedDate.DayOfMonth );
+        values.put(CATGRY_COL, selectedCategory );
         values.put(  ITEM_COL, enteredItem);
         values.put(AMOUNT_COL, enteredAmt);
 
