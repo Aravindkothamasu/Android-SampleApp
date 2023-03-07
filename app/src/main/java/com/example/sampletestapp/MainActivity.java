@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 CheckForFABExpand();
 
                 Intent intent = new Intent(MainActivity.this, DatabaseActivity.class);
+                intent.putExtra("isTesting", C1.isChecked());
                 startActivity(intent);
             }
         });

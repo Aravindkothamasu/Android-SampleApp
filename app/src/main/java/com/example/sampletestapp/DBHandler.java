@@ -14,8 +14,7 @@ import java.util.Date;
 
 public class DBHandler extends SQLiteOpenHelper {
     // creating a constant variables for our database.
-    // below variable is for our database name.
-    private static final String DB_NAME = "ARAVIND_EXPENSES.sqlite";
+
     // below int is our database version
     private static final int DB_VERSION = 1;
     // below variable is for our table name.
@@ -34,9 +33,11 @@ public class DBHandler extends SQLiteOpenHelper {
     private final Context mContext;
 
     // creating a constructor for our database handler.
-    public DBHandler(Context context) {
+    public DBHandler(Context context, String DB_NAME) {
+
         super(context, DB_NAME, null, DB_VERSION);
         mContext = context;
+
     }
 
     // below method is for creating a database by running a sqlite query
@@ -66,11 +67,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // this method is use to add new course to our sqlite database.
     public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt, String selectedCategory ) {
+
         TABLE_NAME = generateTableName(selectedDate);
 
         // Log.e( mContext.getString(R.string.DB_HANDLER), "Before Calling getWritable Database");
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.e( mContext.getString(R.string.DB_HANDLER), "After Calling getWritable Database "+TABLE_NAME);
+        Log.e( mContext.getString(R.string.DB_HANDLER), "Database "+ TABLE_NAME);
 
         if( false == doesTableExist(db, TABLE_NAME)) {
             createTable(db, selectedDate);

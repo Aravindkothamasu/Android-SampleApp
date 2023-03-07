@@ -3,6 +3,7 @@ package com.example.sampletestapp;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,19 +44,28 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
     ArrayList<String> expseSpnerAryLst = new ArrayList<String>();
     ArrayAdapter<String> expseAdapter;
     Spinner expseSpner;
+    boolean isTesting = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent;
+
         setContentView(R.layout.activity_database);
-        Log.e( getString(R.string.DB), "OnCreate Called");
+
+        intent = getIntent();
+        isTesting = intent.getBooleanExtra("isTesting", false);
+
+
+
+        Log.e( getString(R.string.DB), "OnCreate isTesting : "+isTesting);
 
         databaseInitVariables();
 
         // creating a new dbhandler class
         // and passing our context to it.
-        dbHandler = new DBHandler(DatabaseActivity.this);
+        dbHandler = new DBHandler(DatabaseActivity.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
         Log.e( getString(R.string.DB), "After new DBHandler Called");
 
         calendarDate.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {

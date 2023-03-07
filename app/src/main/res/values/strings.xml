@@ -29,6 +29,11 @@
     <string name="CAT_STK_RTN">Stk Rtn</string>
     <string name="CAT_FRND">Frnd</string>
 
+    <!-- Database filename declerations -->
+    <string name="DB_FILENAME_TESTING">Sample_Testing.sqlite</string>
+    <string name="DB_FILENAME_RELEASE">ARAVIND_EXPENSES.sqlite</string>
+
+
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
