@@ -141,13 +141,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean c, r, t;
+                Boolean r, t;
                 int Rg=0;
 
                 CheckForFABExpand();
 
                 t=T1.isChecked();
-                c=C1.isChecked();
                 r=R1.isChecked();
                 Rg=RG1.getCheckedRadioButtonId();
 
@@ -176,16 +175,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean c, r, t;
+                Boolean r, t;
                 t=T1.isChecked();
-                c=C1.isChecked();
                 r=R1.isChecked();
 
                 CheckForFABExpand();
 
                 B2.setText( "SQUEEZE " + getString(R.string.BUT_2_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT2 "+edittext1.getText().toString()+" "+c+" "+t+" "+r);
+                Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+t+" "+r, Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT2 "+edittext1.getText().toString()+" "+t+" "+r);
 
 
                 progress=new ProgressDialog(MainActivity.this);
@@ -241,16 +239,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean c, r, t;
+                Boolean r, t;
                 t=T1.isChecked();
-                c=C1.isChecked();
                 r=R1.isChecked();
 
                 CheckForFABExpand();
 
                 B3.setText( "SQUEEZE " + getString(R.string.BUT_3_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT3 "+edittext1.getText().toString()+" "+c+" "+t+" "+r);
+                Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+t+" "+r, Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT3 "+edittext1.getText().toString()+" "+t+" "+r);
 
 
                 if( serv.isNetworkAvaliable(MainActivity.this) == true ) {
