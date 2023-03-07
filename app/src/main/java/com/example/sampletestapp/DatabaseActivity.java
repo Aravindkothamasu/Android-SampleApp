@@ -83,7 +83,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
                     selectedDate = GetCurrDate(calendarDate);
                 }
                 // validating if the text fields are empty or not.
-                if ( (enteredAmt != 0 && selectedDate.Year != 0) && (enteredItem.isEmpty() && selectedCategory == "Other") ) {
+                if ( (enteredAmt != 0 && selectedDate.Year != 0) && (enteredItem.isEmpty() && selectedCategory == getString(R.string.CAT_OTHER)) ) {
                     Log.e( getString(R.string.DB), "Please enter all the data");
                     Toast.makeText(DatabaseActivity.this, "Please enter all the data..", Toast.LENGTH_SHORT).show();
                     clearBuffers(getApplicationContext(), v );
@@ -118,11 +118,12 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         expseSpner.setOnItemSelectedListener(this);
         expseSpner.setVisibility(View.VISIBLE);
 
-        expseSpnerAryLst.add("Other");
-        expseSpnerAryLst.add("Tea");
-        expseSpnerAryLst.add("Food");
-        expseSpnerAryLst.add("Cig");
-        expseSpnerAryLst.add("Stock Rtn");
+        expseSpnerAryLst.add(getString(R.string.CAT_OTHER));
+        expseSpnerAryLst.add(getString(R.string.CAT_TEA));
+        expseSpnerAryLst.add(getString(R.string.CAT_FOOD));
+        expseSpnerAryLst.add(getString(R.string.CAT_CIG));
+        expseSpnerAryLst.add(getString(R.string.CAT_STK_RTN));
+        expseSpnerAryLst.add(getString(R.string.CAT_FRND));
 
         expseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, expseSpnerAryLst);
         expseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -137,7 +138,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
         hideKeyboardFrom( context, v );
         expseSpner.setSelection(0);
-        selectedCategory = "";
+        selectedCategory = getString(R.string.CAT_OTHER);
         Log.e( getString(R.string.DB), "CLEAR BUF CAT "+ selectedCategory);
     }
 
