@@ -1,0 +1,15 @@
+7/3/23
+      Need to Implememt below Features.
+    ------------------------------------
+    
+
+ *******   v1.1	    ******
+
+
+ *******   v1.0	    ******
+
+1, get possible for getString in DBHandler.java
+2, Place -ve sign for Stock Rtn
+3, In Purhcase Amount counter able to take -ve amount also
+4, Create 2 db files for Testing as well-as logging
+
