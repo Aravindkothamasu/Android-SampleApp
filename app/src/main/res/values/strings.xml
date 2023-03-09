@@ -20,6 +20,7 @@
     <string name="TAG4">ACTVITY4</string>
     <string name="DB">DBLOG</string>
     <string name="DB_HANDLER">DBHANDLER</string>
+    <string name="STATS">PUR_STAT</string>
 
     <!-- Purchase Category Type Decleration -->
     <string name="CAT_OTHER">Other</string>

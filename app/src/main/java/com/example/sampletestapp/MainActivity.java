@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Toast.makeText(MainActivity.this, "Purchase Stats", Toast.LENGTH_SHORT).show();
                 CheckForFABExpand();
 
-                Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
+                Intent intent = new Intent(MainActivity.this, PurchaseStats.class);
                 startActivity(intent);
             }
         });
