@@ -4,6 +4,7 @@
     
 
  *******   v1.1	    ******
+1, Create Purchase_stats activity and get inputs from user Month and year
 
 
  *******   v1.0	    ******
