@@ -24,5 +24,7 @@ This Software is purely developed and tested by ___Aravind Kothamasu___
  - Create 2 db files for Testing as well-as logging
 
 
+## Contributing
 
+No one like to contribute this kind of source code, even tough if u want to contribute to it, mail aravindkothamasu@gmail.com .
 
