@@ -1,4 +1,4 @@
-## Sample Test Android Application
+# Sample Test Android Application
 
 ---
 
@@ -8,7 +8,7 @@ This Software is purely developed and tested by ___Aravind Kothamasu___
 
 ---
 
-# Tag history
+## Tag history
 
 
 ### v1.1 : 09/03/2023
