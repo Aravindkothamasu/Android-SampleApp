@@ -1,7 +1,7 @@
 # Sample Android Test Application
 ---
-This is a sample android application, knowing for how to se andrid-studio project and how to create sample applications
-This Software is purely developed and tested by ___Aravind Kothamasu___
+This is a sample android application, knowing for how to use android-studio project and how to create sample applications
+This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ---
 
@@ -15,7 +15,7 @@ This Software is purely developed and tested by ___Aravind Kothamasu___
  - Get possible for getString in DBHandler.java
  - Place -ve sign for Stock Rtn
  - In Purhcase Amount counter able to take -ve amount also
- - Create 2 db files for Testing as well-as logging
+ - Create 2 db files for Testing as well-as for logging
 
 ---
 
