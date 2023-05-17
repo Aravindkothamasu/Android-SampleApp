@@ -2,6 +2,7 @@ package com.example.sampletestapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -16,6 +17,10 @@ public class PurchaseStats extends AppCompatActivity {
     private Button idStatGetData;
     private TextView idTxtView;
     private static final String MnthValues[] = {"Jan", "Feb", "Mar", "April", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec" };
+    private DBHandler dbHandler;
+    boolean isTesting = false;
+    Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,27 +33,28 @@ public class PurchaseStats extends AppCompatActivity {
         idStatGetData.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int month=0, yr=0;
-                Pair<Integer, Integer> date;
+                CurrentDate date;
 
                 date  = readPickerValues();
-                month = date.first;
-                yr    = date.second;
 
-                Log.e(getString(R.string.STATS), "TEST MN/YY : "+month+"/"+yr);
-                Toast.makeText(PurchaseStats.this, "STAT : MN/YY : "+month+"/"+yr, Toast.LENGTH_SHORT).show();
-                idTxtView.setText("Processing : "+month+"/"+yr);
+                Log.e(getString(R.string.STATS), "TEST MN/YY : "+date.Month+"/"+date.Year);
+                Toast.makeText(PurchaseStats.this, "STAT : MN/YY : "+date.Month+"/"+date.Year, Toast.LENGTH_SHORT).show();
+                idTxtView.setText("Processing : "+date.Month+"/"+date.Year);
 
                 resetPickerValues();
+
+                // dbHandler = new DBHandler(this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
+                Log.e( getString(R.string.STATS), "BFR Calling DB Handler" );
+                dbHandler = new DBHandler(PurchaseStats.this,  isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
+                dbHandler.getMonthStats(date);
             }
         });
     }
 
-    private Pair<Integer, Integer> readPickerValues() {
-        int month=0, yr=0;
-        month = idStatMnth.getValue();
-        yr    = idStatYr.getValue();
-        return new Pair<Integer, Integer>(month, yr);
+    private CurrentDate readPickerValues() {
+        CurrentDate date;
+        date = new CurrentDate(0, idStatMnth.getValue(), idStatYr.getValue());
+        return date;
     }
 
     private void resetPickerValues() {
@@ -72,6 +78,8 @@ public class PurchaseStats extends AppCompatActivity {
         idStatMnth.setWrapSelectorWheel(true);
         idStatMnth.setDisplayedValues(MnthValues);
 
+        intent = getIntent();
+        isTesting = intent.getBooleanExtra("isTesting", false);
     }
 
     @Override

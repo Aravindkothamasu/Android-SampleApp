@@ -37,7 +37,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         super(context, DB_NAME, null, DB_VERSION);
         mContext = context;
-
+        Log.e(context.getString(R.string.DB_HANDLER),"InDBHandler");
     }
 
     // below method is for creating a database by running a sqlite query
@@ -95,6 +95,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
         Log.e( mContext.getString(R.string.DB_HANDLER), "addNewCourse Close Called");
     }
+
+    public void getMonthStats(CurrentDate date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String TableName = null;
+
+        Log.e(mContext.getString(R.string.DB_HANDLER), "Inside getMonth Stats : "+date.Month+"/"+date.Year);
+        TableName = generateTableName(date);
+
+        if( false == doesTableExist(db, TableName)) {
+            Log.e(mContext.getString(R.string.DB_HANDLER), "Table Ledhu "+TableName);
+        } else {
+            Log.e(mContext.getString(R.string.DB_HANDLER), "Table Vundhi "+TableName);
+        }
+    }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
