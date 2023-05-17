@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -27,24 +28,32 @@ public class PurchaseStats extends AppCompatActivity {
         idStatGetData.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int mnth, yr;
+                int month=0, yr=0;
+                Pair<Integer, Integer> date;
 
-                mnth = idStatMnth.getValue();
-                yr   = idStatYr.getValue();
+                date  = readPickerValues();
+                month = date.first;
+                yr    = date.second;
 
-                Log.e(getString(R.string.STATS), "MN/YY : "+mnth+"/"+yr);
-                Toast.makeText(PurchaseStats.this, "MN/YY : "+mnth+"/"+yr, Toast.LENGTH_SHORT).show();
+                Log.e(getString(R.string.STATS), "TEST MN/YY : "+month+"/"+yr);
+                Toast.makeText(PurchaseStats.this, "STAT : MN/YY : "+month+"/"+yr, Toast.LENGTH_SHORT).show();
+                idTxtView.setText("Processing : "+month+"/"+yr);
 
-                idTxtView.setText("Processing : "+mnth+"/"+yr);
                 resetPickerValues();
             }
         });
     }
 
+    private Pair<Integer, Integer> readPickerValues() {
+        int month=0, yr=0;
+        month = idStatMnth.getValue();
+        yr    = idStatYr.getValue();
+        return new Pair<Integer, Integer>(month, yr);
+    }
 
     private void resetPickerValues() {
-        idStatMnth.setValue(1);
-        idStatYr.setValue(0);
+        idStatMnth.setValue(idStatMnth.getMinValue());
+        idStatYr.setValue(idStatYr.getMinValue());
     }
 
     private void variableInit() {
