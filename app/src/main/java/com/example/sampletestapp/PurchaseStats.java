@@ -34,6 +34,8 @@ public class PurchaseStats extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CurrentDate date;
+                CategoryResult []Rslt = null;
+                int TotMnthlyValue = 0;
 
                 date  = readPickerValues();
 
@@ -43,8 +45,19 @@ public class PurchaseStats extends AppCompatActivity {
 
                 resetPickerValues();
 
-                dbHandler = new DBHandler(PurchaseStats.this,  isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE)); //TODO Check for statement is need for everytime.
-                dbHandler.getMonthStats(date);
+                dbHandler = new DBHandler(PurchaseStats.this,  isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
+                Rslt = dbHandler.getMonthStats(date);
+                if( Rslt != null ){
+                    for (int iterator =0; iterator < getResources().getInteger(R.integer.CATEGORY_COUNT); iterator++) {
+                        Log.e(getString(R.string.STATS), "CAT :-> " + Rslt[iterator].CategoryName + " || AMOUNT :-> " + Rslt[iterator].CategoryValue );
+                        TotMnthlyValue += Rslt[iterator].CategoryValue;
+                    }
+                    Toast.makeText(PurchaseStats.this, "STAT : MN/YY : "+date.Month+"/"+date.Year+ " Rs."+TotMnthlyValue , Toast.LENGTH_SHORT).show();
+                    idTxtView.setText(date.Month+"/"+date.Year+ " : Rs. "+TotMnthlyValue);
+                } else {
+                    Toast.makeText(PurchaseStats.this,"Table not found " + date.Month+"/"+date.Year,Toast.LENGTH_SHORT).show();
+                    idTxtView.setText(date.Month+"/"+date.Year+" : Table not found");
+                }
             }
         });
     }

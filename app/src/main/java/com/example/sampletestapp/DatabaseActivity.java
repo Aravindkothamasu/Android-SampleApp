@@ -93,7 +93,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
                     selectedDate = GetCurrDate(calendarDate);
                 }
                 // validating if the text fields are empty or not.
-                if ( (enteredAmt != 0 && selectedDate.Year != 0) && (enteredItem.isEmpty() && selectedCategory == getString(R.string.CAT_OTHER)) ) {
+                if ( (enteredAmt != 0 && selectedDate.Year != 0) && (enteredItem.isEmpty() && selectedCategory == getString(R.string.CATEGORY_OTHER)) ) {
                     Log.e( getString(R.string.DB), "Please enter all the data");
                     Toast.makeText(DatabaseActivity.this, "Please enter all the data..", Toast.LENGTH_SHORT).show();
                     clearBuffers(getApplicationContext(), v );
@@ -128,12 +128,12 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         expseSpner.setOnItemSelectedListener(this);
         expseSpner.setVisibility(View.VISIBLE);
 
-        expseSpnerAryLst.add(getString(R.string.CAT_OTHER));
-        expseSpnerAryLst.add(getString(R.string.CAT_TEA));
-        expseSpnerAryLst.add(getString(R.string.CAT_FOOD));
-        expseSpnerAryLst.add(getString(R.string.CAT_CIG));
-        expseSpnerAryLst.add(getString(R.string.CAT_STK_RTN));
-        expseSpnerAryLst.add(getString(R.string.CAT_FRND));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY1));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY2));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY3));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY4));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY5));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY6));
 
         expseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, expseSpnerAryLst);
         expseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -148,7 +148,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
         hideKeyboardFrom( context, v );
         expseSpner.setSelection(0);
-        selectedCategory = getString(R.string.CAT_OTHER);
+        selectedCategory = getString(R.string.CATEGORY_OTHER);
         Log.e( getString(R.string.DB), "CLEAR BUF CAT "+ selectedCategory);
     }
 

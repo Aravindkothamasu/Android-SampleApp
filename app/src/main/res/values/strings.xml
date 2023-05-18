@@ -22,19 +22,23 @@
     <string name="DB_HANDLER">DBHANDLER</string>
     <string name="STATS">PUR_STAT</string>
 
-    <!-- Purchase Category Type Decleration -->
-    <string name="CAT_OTHER">Other</string>
-    <string name="CAT_TEA">Tea</string>
-    <string name="CAT_FOOD">Food</string>
-    <string name="CAT_CIG">Cig</string>
-    <string name="CAT_STK_RTN">Stk Rtn</string>
-    <string name="CAT_FRND">Frnd</string>
+    <!-- Purchase Category Type declaration -->
+    <integer name="CATEGORY_COUNT">6</integer>
+
+    <string name="CATEGORY1">Other</string>
+    <string name="CATEGORY2">Tea</string>
+    <string name="CATEGORY3">Food</string>
+    <string name="CATEGORY4">Cig</string>
+    <string name="CATEGORY5">Stk Rtn</string>
+    <string name="CATEGORY6">Frnd</string>
+
+    <string name="CATEGORY_OTHER">@string/CATEGORY1</string>
+    <string name="CATEGORY_STOCK_RTN">@string/CATEGORY5</string>
 
 
 
 
-
-    <!-- Database filename declerations -->
+    <!-- Database filename declarations -->
     <string name="DB_FILENAME_TESTING">Sample_Testing.sqlite</string>
     <string name="DB_FILENAME_RELEASE">ARAVIND_EXPENSES.sqlite</string>
 

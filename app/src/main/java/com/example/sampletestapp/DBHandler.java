@@ -8,15 +8,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
+class CategoryResult {
+        String CategoryName;
+        int  CategoryValue;
+        CategoryResult( int Value, String Name ) {
+            CategoryValue = Value;
+            CategoryName  = Name;
+        }
+}
+
 
 public class DBHandler extends SQLiteOpenHelper {
-    // creating a constant variables for our database.
-
-
     // below variable is for our table name.
     private String TABLE_NAME ="";
-
-
+    public  String []CategoryNameList;
     private final Context mContext;
 
     // creating a constructor for our database handler.
@@ -24,6 +29,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
         super(context, DB_NAME, null, context.getResources().getInteger(R.integer.DB_VERSION));
         mContext = context;
+
+        CategoryNameList = new String[context.getResources().getInteger(R.integer.CATEGORY_COUNT)];
+        CategoryNameList[0] = context.getString(R.string.CATEGORY1);
+        CategoryNameList[1] = context.getString(R.string.CATEGORY2);
+        CategoryNameList[2] = context.getString(R.string.CATEGORY3);
+        CategoryNameList[3] = context.getString(R.string.CATEGORY4);
+        CategoryNameList[4] = context.getString(R.string.CATEGORY5);
+        CategoryNameList[5] = context.getString(R.string.CATEGORY6);
+
         Log.e(context.getString(R.string.DB_HANDLER),"InDBHandler");
     }
 
@@ -54,7 +68,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // this method is use to add new course to our sqlite database.
     public void addNewCourse( CurrentDate selectedDate, String enteredItem, int enteredAmt, String selectedCategory ) {
-
         TABLE_NAME = generateTableName(selectedDate);
 
         // Log.e( mContext.getString(R.string.DB_HANDLER), "Before Calling getWritable Database");
@@ -65,7 +78,7 @@ public class DBHandler extends SQLiteOpenHelper {
             createTable(db, selectedDate);
         }
 
-        if( mContext.getString(R.string.CAT_STK_RTN) == selectedCategory) {
+        if( mContext.getString(R.string.CATEGORY_STOCK_RTN) == selectedCategory) {
             enteredAmt = -1 * enteredAmt;
         }
         Log.e( mContext.getString(R.string.DB_HANDLER), TABLE_NAME + " :-> "+enteredItem +" | "+enteredAmt+" | "+selectedCategory);
@@ -83,10 +96,9 @@ public class DBHandler extends SQLiteOpenHelper {
         Log.e( mContext.getString(R.string.DB_HANDLER), "addNewCourse Close Called");
     }
 
-    public void getMonthStats(CurrentDate date) {
+    public CategoryResult[] getMonthStats(CurrentDate date) {
         SQLiteDatabase db = this.getReadableDatabase();
         String TableName = null;
-        int CategoryAmt = 0;
 
         Log.e(mContext.getString(R.string.DB_HANDLER), "Inside getMonth Stats : "+date.Month+"/"+date.Year);
         TableName = generateTableName(date);
@@ -95,28 +107,45 @@ public class DBHandler extends SQLiteOpenHelper {
             Log.e(mContext.getString(R.string.DB_HANDLER), "Table Ledhu "+TableName);
         } else {
             Log.e(mContext.getString(R.string.DB_HANDLER), "Table Vundhi "+TableName);
-
-            CategoryAmt = readCategoryAmt(db, TableName, mContext.getString(R.string.CAT_TEA));
-            Log.e(mContext.getString(R.string.DB_HANDLER), "CAT  : "+mContext.getString(R.string.CAT_TEA)+ " AMOUNT : "+CategoryAmt);
+            return readAllCategoryAmt(db, TableName);
         }
+        return null;
     }
+
+    public CategoryResult[] readAllCategoryAmt( SQLiteDatabase db, String TableName ) {
+        CategoryResult [] Rslt = null;
+        int Amount = 0;
+
+        Rslt = new CategoryResult[mContext.getResources().getInteger(R.integer.CATEGORY_COUNT)];
+
+        for ( int iterator= 0; iterator < mContext.getResources().getInteger(R.integer.CATEGORY_COUNT); iterator++) {
+            Amount = readCategoryAmt(db, TableName, CategoryNameList[iterator]);
+            //Log.e(mContext.getString(R.string.DB_HANDLER), "CAT :-> "+CategoryNameList[iterator]+ " || AMOUNT :-> "+Amount);
+
+            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList[iterator]);
+            Amount = 0;
+        }
+        return Rslt;
+    }
+
+
 
     public int readCategoryAmt( SQLiteDatabase db, String TableName, String CategoryName ) {
         Cursor cursor = null;
         int Value = 0;
 
-        Log.e( mContext.getString(R.string.DB_HANDLER), "readCategoryAmt "+TableName+" "+CategoryName );
+        // Log.e( mContext.getString(R.string.DB_HANDLER), "readCategoryAmt "+TableName+" "+CategoryName );
 
         cursor = db.query(TableName, new String[] { mContext.getString(R.string.CATGRY_COL), mContext.getString(R.string.AMOUNT_COL)},
                  mContext.getString(R.string.CATGRY_COL) + " =?", new String[] {CategoryName}, null, null, null);
                  // null , null, null, null, null); // TODO : To Read all the elements, use this statement.
 
         if( cursor != null ) {
-            Log.e( mContext.getString(R.string.DB_HANDLER), "CURSOR COUNT : "+cursor.getCount());
+            // Log.e( mContext.getString(R.string.DB_HANDLER), "CURSOR COUNT : "+cursor.getCount());
             cursor.moveToFirst();
 
             for( int i=0; i < cursor.getCount(); i++ ) {
-                Log.e( mContext.getString(R.string.DB_HANDLER), "CAT-> "+ cursor.getString(0) +" AMT " + cursor.getLong(1) );
+                // Log.e( mContext.getString(R.string.DB_HANDLER), "CAT-> "+ cursor.getString(0) +" AMT " + cursor.getLong(1) );
                 Value += cursor.getLong(1);
                 cursor.moveToNext();
             }
