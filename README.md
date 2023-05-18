@@ -6,9 +6,11 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 ---
 
 ## Tag History
-### v1.1 : 09/03/2023
+### v1.1 : TBD
 
  - Create Purchase Stats activity and get inputs from user Month and year
+ - From user input of month & year, able to fetch table from database file.
+ - Able to calculate amount of a particular category for a given month and year specified.
 
 ### v1.0 : 07/03/2023
 
