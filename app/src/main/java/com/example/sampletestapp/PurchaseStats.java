@@ -48,12 +48,18 @@ public class PurchaseStats extends AppCompatActivity {
                 dbHandler = new DBHandler(PurchaseStats.this,  isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
                 Rslt = dbHandler.getMonthStats(date);
                 if( Rslt != null ){
+                    idTxtView.setText("");
+
                     for (int iterator =0; iterator < getResources().getInteger(R.integer.CATEGORY_COUNT); iterator++) {
                         Log.e(getString(R.string.STATS), "CAT :-> " + Rslt[iterator].CategoryName + " || AMOUNT :-> " + Rslt[iterator].CategoryValue );
                         TotMnthlyValue += Rslt[iterator].CategoryValue;
+                        if( Rslt[iterator].CategoryValue != 0 ) {
+                            idTxtView.append(Rslt[iterator].CategoryName + "  Rs. " + Rslt[iterator].CategoryValue + "\n");
+                        }
                     }
+
                     Toast.makeText(PurchaseStats.this, "STAT : MN/YY : "+date.Month+"/"+date.Year+ " Rs."+TotMnthlyValue , Toast.LENGTH_SHORT).show();
-                    idTxtView.setText(date.Month+"/"+date.Year+ " : Rs. "+TotMnthlyValue);
+                    idTxtView.append("MM/YY "+date.Month+"/"+date.Year+ " : Total Rs. "+TotMnthlyValue+"\n");
                 } else {
                     Toast.makeText(PurchaseStats.this,"Table not found " + date.Month+"/"+date.Year,Toast.LENGTH_SHORT).show();
                     idTxtView.setText(date.Month+"/"+date.Year+" : Table not found");

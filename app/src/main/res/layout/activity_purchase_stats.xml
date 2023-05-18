@@ -45,6 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Get Data"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:height="60dp"
             tools:layout_editor_absoluteX="89dp"
             tools:layout_editor_absoluteY="199dp" >
         </Button>

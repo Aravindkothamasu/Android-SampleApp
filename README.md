@@ -7,6 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v1.2 : TBD
+ - Display each category expenditure.
+
 ### v1.2 : 18/05/2023
  - From user input of month & year, able to fetch table from database file.
  - Able to calculate amount of a particular category for a given month and year specified.
