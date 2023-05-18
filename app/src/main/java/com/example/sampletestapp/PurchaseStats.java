@@ -43,9 +43,7 @@ public class PurchaseStats extends AppCompatActivity {
 
                 resetPickerValues();
 
-                // dbHandler = new DBHandler(this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
-                Log.e( getString(R.string.STATS), "BFR Calling DB Handler" );
-                dbHandler = new DBHandler(PurchaseStats.this,  isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
+                dbHandler = new DBHandler(PurchaseStats.this,  isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE)); //TODO Check for statement is need for everytime.
                 dbHandler.getMonthStats(date);
             }
         });

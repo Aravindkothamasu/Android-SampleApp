@@ -30,9 +30,37 @@
     <string name="CAT_STK_RTN">Stk Rtn</string>
     <string name="CAT_FRND">Frnd</string>
 
+
+
+
+
     <!-- Database filename declerations -->
     <string name="DB_FILENAME_TESTING">Sample_Testing.sqlite</string>
     <string name="DB_FILENAME_RELEASE">ARAVIND_EXPENSES.sqlite</string>
+
+
+
+
+    <!-- Database table column declarations -->
+    <!-- below int is our database version -->
+    <integer name="DB_VERSION">1</integer>
+
+    <!-- below variable is for our id column -->
+    <string name="ID_COL">id</string>
+
+    <!-- below variable is for date of payment done -->
+    <string name="DATE_COL">Date</string>
+
+    <!-- below variable is for which category to be enter -->
+    <string name="CATGRY_COL">Category</string>
+
+    <!-- below variable is for our Amount to be enter -->
+    <string name="AMOUNT_COL">Amount</string>
+
+    <!-- below variable is for Item Purchase is used( Anthey Dheniki vadeamo ani) -->
+    <string name="ITEM_COL">ItemPurchase</string>
+
+
 
 
 
