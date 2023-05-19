@@ -7,8 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
-### v1.2 : TBD
+### v1.3 : 19/05/2023
  - Display each category expenditure.
+ - Able to read all categories parameters, converted excel into sqlite database, Using https://mygeodata.cloud/converter/ods-to-sqlite link.
 
 ### v1.2 : 18/05/2023
  - From user input of month & year, able to fetch table from database file.
