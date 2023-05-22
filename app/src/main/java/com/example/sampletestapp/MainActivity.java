@@ -41,13 +41,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private EditText edittext1;
     Button B1, B2, B3;
     CheckBox C1;
-    ToggleButton T1;
     RadioButton R1;
 
     RadioGroup RG1;
     RadioButton RGb1;
-
-    ArrayList<String> country=new ArrayList<String>();
 
     // Progess Bar for Button 2 is Clicked
     private ProgressDialog progress;
@@ -123,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
         ////////////////////////////////////////////////////////////////
 
-        ArrayAdapter<String> CountryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country);
 
         // timepicker1 = (TimePicker)findViewById(R.id.timepicker1);
 
@@ -140,12 +136,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean r, t;
+                Boolean r;
                 int Rg=0;
 
                 CheckForFABExpand();
 
-                t=T1.isChecked();
                 r=R1.isChecked();
                 Rg=RG1.getCheckedRadioButtonId();
 
@@ -174,15 +169,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean r, t;
-                t=T1.isChecked();
+                Boolean r;
                 r=R1.isChecked();
 
                 CheckForFABExpand();
 
                 B2.setText( "SQUEEZE " + getString(R.string.BUT_2_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+t+" "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT2 "+edittext1.getText().toString()+" "+t+" "+r);
+                Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+r, Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT2 "+edittext1.getText().toString()+" "+r);
 
 
                 progress=new ProgressDialog(MainActivity.this);
@@ -238,15 +232,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean r, t;
-                t=T1.isChecked();
+                Boolean r;
                 r=R1.isChecked();
 
                 CheckForFABExpand();
 
                 B3.setText( "SQUEEZE " + getString(R.string.BUT_3_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+t+" "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT3 "+edittext1.getText().toString()+" "+t+" "+r);
+                Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+r, Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT3 "+edittext1.getText().toString()+" "+r);
 
 
                 if( serv.isNetworkAvaliable(MainActivity.this) == true ) {
@@ -280,7 +273,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
     }
-
 
     @Override
     protected void onStart() {
@@ -368,28 +360,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // CheckBox Defining
         C1= (CheckBox)findViewById(R.id.CheckBox1);
 
-        // Toggle Button
-        T1 = (ToggleButton)findViewById(R.id.ToggleButton1);
-
         // Radio Button
         R1 = (RadioButton)findViewById(R.id.RadioButton1);
 
         // Radio Group
         RG1 = (RadioGroup)findViewById(R.id.RadioGroup1);
-
-
-        country.add("India");
-        country.add("US");
-        country.add("Russia");
-        country.add("Germany");
-        country.add("Ukraine");
-        country.add("China");
-        country.add("Italy");
-        country.add("Canada");
-        country.add("Nepal");
-        country.add("Sri Lanka");
-        country.add("Bangkok");
-
 
         addAlarmFab = findViewById(R.id.idAddExpense);
         addPersonFab = findViewById(R.id.idExpenseStat);

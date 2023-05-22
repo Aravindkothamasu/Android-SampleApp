@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="7">
+        android:weightSum="6">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,16 +63,6 @@
             android:layout_weight="1"
             android:ems="15"
             android:inputType="text" />
-
-        <ToggleButton
-            android:id="@+id/ToggleButton1"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:textSize="30dp"
-            android:textOn="MALE"
-            android:textOff="FEMALE"
-            android:checked="false"/>
 
         <RadioButton
             android:id="@+id/RadioButton1"
