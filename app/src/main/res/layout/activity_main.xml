@@ -61,36 +61,6 @@
             android:layout_gravity="center_horizontal"
             android:textSize="30dp"/>
 
-        <RadioGroup
-            android:id="@+id/RadioGroup1"
-            android:layout_weight="1"
-            android:weightSum="2"
-            android:layout_height="match_parent"
-            android:layout_width="fill_parent">
-
-            <RadioButton
-                android:id="@+id/RadioGButton1"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:checked="false"
-                android:text="A"
-                android:textSize="30dp"
-                app:fontFamily="sans-serif-black" />
-
-            <RadioButton
-                android:id="@+id/RadioGButton2"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:checked="false"
-                android:text="B"
-                android:textSize="30dp"
-                app:fontFamily="sans-serif-black" />
-        </RadioGroup>
-
         <CheckBox
             android:id="@+id/CheckBox1"
             android:layout_width="match_parent"

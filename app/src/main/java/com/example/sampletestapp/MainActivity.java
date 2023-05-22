@@ -40,10 +40,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView textview1;
     Button B1, B2, B3;
     CheckBox C1;
-    RadioButton R1;
 
-    RadioGroup RG1;
-    RadioButton RGb1;
 
     // Progess Bar for Button 2 is Clicked
     private ProgressDialog progress;
@@ -135,31 +132,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean r;
                 int Rg=0;
 
                 CheckForFABExpand();
 
-                r=R1.isChecked();
-                Rg=RG1.getCheckedRadioButtonId();
-
                 B1.setText( "SQUEEZE " + getString(R.string.BUT_1_NAME));
-                if( Rg != -1 )
-                {
-                    RGb1 = (RadioButton) findViewById(Rg);
-                    Toast.makeText(MainActivity.this, "BUT 1 : " +  RGb1.getText(), Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(MainActivity.this, "BUT 1 : " + " NO SWITCH CLICKED", Toast.LENGTH_SHORT).show();
-                }
 
                 Log.e( getString(R.string.TAG1), "Before Starting Second Activity in First Activity");
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
                 Log.e( getString(R.string.TAG1), "After Starting Second Activity in First Activity");
-                // Toast.makeText(MainActivity.this, "BUT 1 ""+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
-                // textview1.setText("BUT1 "+" "+c+" "+t+" "+r)
             }
         });
 
@@ -168,14 +150,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean r;
-                r=R1.isChecked();
-
                 CheckForFABExpand();
 
                 B2.setText( "SQUEEZE " + getString(R.string.BUT_2_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 2 "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT2 "+r);
+                Toast.makeText(MainActivity.this, "BUT 2 ", Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT2 ");
 
 
                 progress=new ProgressDialog(MainActivity.this);
@@ -231,14 +210,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View V)
             {
-                Boolean r;
-                r=R1.isChecked();
-
                 CheckForFABExpand();
 
                 B3.setText( "SQUEEZE " + getString(R.string.BUT_3_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 3 "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT3 "+r);
+                Toast.makeText(MainActivity.this, "BUT 3 ", Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT3 ");
 
 
                 if( serv.isNetworkAvaliable(MainActivity.this) == true ) {
@@ -355,12 +331,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // CheckBox Defining
         C1= (CheckBox)findViewById(R.id.CheckBox1);
-
-        // Radio Button
-        R1 = (RadioButton)findViewById(R.id.RadioButton1);
-
-        // Radio Group
-        RG1 = (RadioGroup)findViewById(R.id.RadioGroup1);
 
         idAddExpenseBtn = findViewById(R.id.idAddExpense);
         idExpenseStatBtn = findViewById(R.id.idExpenseStat);
