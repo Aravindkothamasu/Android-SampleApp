@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="8">
+        android:weightSum="7">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,17 +112,6 @@
                 android:textSize="30dp"
                 app:fontFamily="sans-serif-black" />
         </RadioGroup>
-
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/ic_launcher_background"
-            android:textColor="#9C27B0"
-            android:visibility="visible"
-            app:fontFamily="serif" />
 
         <CheckBox
             android:id="@+id/CheckBox1"

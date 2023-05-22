@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // Progess Bar for Button 2 is Clicked
     private ProgressDialog progress;
 
-    Spinner spinner1;
-
     broadcast airplaneModeChangeReceiver = new broadcast();
     ServiceManager serv = new ServiceManager();
     String Str = null;
@@ -126,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ////////////////////////////////////////////////////////////////
 
         ArrayAdapter<String> CountryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country);
-        spinner1.setAdapter(CountryAdapter);
 
         // timepicker1 = (TimePicker)findViewById(R.id.timepicker1);
 
@@ -379,12 +376,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Radio Group
         RG1 = (RadioGroup)findViewById(R.id.RadioGroup1);
-
-
-        // Spinner
-        spinner1 = (Spinner)findViewById(R.id.spinner1);
-        spinner1.setOnItemSelectedListener(this);
-        spinner1.setVisibility(View.VISIBLE);
 
 
         country.add("India");
