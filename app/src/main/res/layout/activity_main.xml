@@ -52,15 +52,6 @@
 
         </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/RadioButton1"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Enti"
-            android:layout_gravity="center_horizontal"
-            android:textSize="30dp"/>
-
         <CheckBox
             android:id="@+id/CheckBox1"
             android:layout_width="match_parent"
