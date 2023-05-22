@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="6">
+        android:weightSum="5">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,18 +51,6 @@
                 android:text="@string/BUT_3_NAME" />
 
         </LinearLayout>
-
-
-
-        <EditText
-            android:id="@+id/editText1"
-            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-            android:hint="Enter Phone No."
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:ems="15"
-            android:inputType="text" />
 
         <RadioButton
             android:id="@+id/RadioButton1"

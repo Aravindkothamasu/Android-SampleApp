@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     // private ActivityMainBinding binding;
 
     private TextView textview1;
-    private EditText edittext1;
     Button B1, B2, B3;
     CheckBox C1;
     RadioButton R1;
@@ -148,19 +147,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 if( Rg != -1 )
                 {
                     RGb1 = (RadioButton) findViewById(Rg);
-                    Toast.makeText(MainActivity.this, "BUT 1 : " + edittext1.getText().toString() + " " + RGb1.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "BUT 1 : " +  RGb1.getText(), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this, "BUT 1 : " + edittext1.getText().toString() + " NO SWITCH CLICKED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "BUT 1 : " + " NO SWITCH CLICKED", Toast.LENGTH_SHORT).show();
                 }
 
                 Log.e( getString(R.string.TAG1), "Before Starting Second Activity in First Activity");
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
                 Log.e( getString(R.string.TAG1), "After Starting Second Activity in First Activity");
-                // Toast.makeText(MainActivity.this, "BUT 1 "+edittext1.getText().toString()+" "+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
-                // textview1.setText("BUT1 "+edittext1.getText().toString()+" "+c+" "+t+" "+r)
+                // Toast.makeText(MainActivity.this, "BUT 1 ""+c+" "+t+" "+r, Toast.LENGTH_SHORT).show();
+                // textview1.setText("BUT1 "+" "+c+" "+t+" "+r)
             }
         });
 
@@ -175,8 +174,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 CheckForFABExpand();
 
                 B2.setText( "SQUEEZE " + getString(R.string.BUT_2_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 2 "+edittext1.getText().toString()+" "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT2 "+edittext1.getText().toString()+" "+r);
+                Toast.makeText(MainActivity.this, "BUT 2 "+r, Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT2 "+r);
 
 
                 progress=new ProgressDialog(MainActivity.this);
@@ -238,8 +237,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 CheckForFABExpand();
 
                 B3.setText( "SQUEEZE " + getString(R.string.BUT_3_NAME) );
-                Toast.makeText(MainActivity.this, "BUT 3 "+edittext1.getText().toString()+" "+r, Toast.LENGTH_SHORT).show();
-                textview1.setText("BUT3 "+edittext1.getText().toString()+" "+r);
+                Toast.makeText(MainActivity.this, "BUT 3 "+r, Toast.LENGTH_SHORT).show();
+                textview1.setText("BUT3 "+r);
 
 
                 if( serv.isNetworkAvaliable(MainActivity.this) == true ) {
@@ -353,9 +352,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Text View Defining
         textview1 = (TextView) findViewById(R.id.SampleText);
-
-        // Edit Text Box Defining
-        edittext1 = (EditText)findViewById(R.id.editText1);
 
         // CheckBox Defining
         C1= (CheckBox)findViewById(R.id.CheckBox1);
