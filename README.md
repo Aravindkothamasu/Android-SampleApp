@@ -7,6 +7,11 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v1.4 : 22/05/2023
+ - Changed start year as 2022 in PurchaseStats.
+ - Change Main activity Fab action button
+ - Removed Spinner, toggle button, editText, Radio button, from main activity.
+
 ### v1.3 : 19/05/2023
  - Display each category expenditure.
  - Able to read all categories parameters, converted excel into sqlite database, Using https://mygeodata.cloud/converter/ods-to-sqlite link.
