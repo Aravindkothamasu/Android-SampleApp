@@ -400,12 +400,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         country.add("Bangkok");
 
 
-        addAlarmFab = findViewById(R.id.add_alarm_fab);
-        addPersonFab = findViewById(R.id.add_person_fab);
-        addActionFab = findViewById(R.id.add_fab);
+        addAlarmFab = findViewById(R.id.idAddExpense);
+        addPersonFab = findViewById(R.id.idExpenseStat);
+        addActionFab = findViewById(R.id.idExpense);
 
-        addAlarmText = findViewById(R.id.add_alarm_action_text);
-        addPersonFabText = findViewById(R.id.add_person_action_text);
+        addAlarmText = findViewById(R.id.idAddExpenseText);
+        addPersonFabText = findViewById(R.id.idExpenseStatText);
 
         addAlarmFab.setVisibility(View.GONE);
         addPersonFab.setVisibility(View.GONE);

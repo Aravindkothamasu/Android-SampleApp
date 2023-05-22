@@ -149,7 +149,7 @@
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/add_fab"
+        android:id="@+id/idExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -157,60 +157,60 @@
         android:layout_marginBottom="16dp"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="ACT"
+        android:text="EXP"
         app:icon="@drawable/add_symbol"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!--Floating action button for add alarm-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_alarm_fab"
+        android:id="@+id/idAddExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         app:fabSize="normal"
         app:tint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/add_fab"
-        app:layout_constraintEnd_toEndOf="@+id/add_fab"
+        app:layout_constraintBottom_toTopOf="@+id/idExpense"
+        app:layout_constraintEnd_toEndOf="@+id/idExpense"
         app:srcCompat="@drawable/add_alarm"
         android:visibility="visible"
         android:contentDescription="@string/app_name" />
     <!--Action name text for the add alarm button-->
 
     <TextView
-        android:id="@+id/add_alarm_action_text"
+        android:id="@+id/idAddExpenseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Add Purchase"
         android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_alarm_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_alarm_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_alarm_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/idAddExpense"
+        app:layout_constraintEnd_toStartOf="@+id/idAddExpense"
+        app:layout_constraintTop_toTopOf="@+id/idAddExpense" />
     <!--Floating action button for add person-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_person_fab"
+        android:id="@+id/idExpenseStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         app:fabSize="normal"
         app:tint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/add_alarm_fab"
-        app:layout_constraintEnd_toEndOf="@+id/add_alarm_fab"
-        app:layout_constraintStart_toStartOf="@+id/add_alarm_fab"
+        app:layout_constraintBottom_toTopOf="@+id/idAddExpense"
+        app:layout_constraintEnd_toEndOf="@+id/idAddExpense"
+        app:layout_constraintStart_toStartOf="@+id/idAddExpense"
         app:srcCompat="@drawable/add_person"
         android:visibility="visible"
         android:contentDescription="@string/app_name" />
     <!--Action name text for the add person button-->
     <TextView
-        android:id="@+id/add_person_action_text"
+        android:id="@+id/idExpenseStatText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="Purchase Stats"
         android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_person_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_person_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_person_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/idExpenseStat"
+        app:layout_constraintEnd_toStartOf="@+id/idExpenseStat"
+        app:layout_constraintTop_toTopOf="@+id/idExpenseStat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
