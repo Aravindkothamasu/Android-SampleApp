@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String Str = null;
 
     // Floating Action Button Decleration
-    FloatingActionButton idAddExpenseBtn, idExpenseStatBtn;
+    FloatingActionButton idAddExpenseBtn, idExpenseStatBtn, idPeriodStatsBtn;
     ExtendedFloatingActionButton idExpenseBtn;
-    TextView idAddExpenseText, idExpenseStatBtnText;
+    TextView idAddExpenseText, idExpenseStatText, idPeriodStatsText;
     Boolean isAllFABVisible = false;
 
     // Floating Action Button Animation Decleartion.
@@ -114,6 +114,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
             }
         });
+
+
+        idPeriodStatsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e( getString(R.string.TAG1), "Period Stats Btn Clicked");
+                Toast.makeText(MainActivity.this, "Period Stats Clicked", Toast.LENGTH_SHORT).show();
+                CheckForFABExpand();
+            }
+        });
+
+
         ////////////////////////////////////////////////////////////////
 
 
@@ -332,17 +344,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // CheckBox Defining
         C1= (CheckBox)findViewById(R.id.CheckBox1);
 
-        idAddExpenseBtn = findViewById(R.id.idAddExpense);
+        idAddExpenseBtn  = findViewById(R.id.idAddExpense);
         idExpenseStatBtn = findViewById(R.id.idExpenseStat);
-        idExpenseBtn = findViewById(R.id.idExpense);
+        idPeriodStatsBtn = findViewById(R.id.idPeriodStats);
+        idExpenseBtn     = findViewById(R.id.idExpense);
 
-        idAddExpenseText = findViewById(R.id.idAddExpenseText);
-        idExpenseStatBtnText = findViewById(R.id.idExpenseStatText);
+        idAddExpenseText  = findViewById(R.id.idAddExpenseText);
+        idExpenseStatText = findViewById(R.id.idExpenseStatText);
+        idPeriodStatsText = findViewById(R.id.idPeriodStatsText);
 
         idAddExpenseBtn.setVisibility(View.GONE);
         idExpenseStatBtn.setVisibility(View.GONE);
+        idPeriodStatsBtn.setVisibility(View.GONE);
+
         idAddExpenseText.setVisibility(View.GONE);
-        idExpenseStatBtnText.setVisibility(View.GONE);
+        idExpenseStatText.setVisibility(View.GONE);
+        idPeriodStatsText.setVisibility(View.GONE);
 
         isAllFABVisible = false;
 
@@ -374,12 +391,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         idAddExpenseBtn.startAnimation(fromBottom);
         idExpenseStatBtn.startAnimation(fromBottom);
+        idPeriodStatsBtn.startAnimation(fromBottom);
+
         idExpenseBtn.startAnimation(rotateOpen);
 
         idAddExpenseBtn.setVisibility(View.VISIBLE);
         idExpenseStatBtn.setVisibility(View.VISIBLE);
+        idPeriodStatsBtn.setVisibility(View.VISIBLE);
+
         idAddExpenseText.setVisibility(View.VISIBLE);
-        idExpenseStatBtnText.setVisibility(View.VISIBLE);
+        idExpenseStatText.setVisibility(View.VISIBLE);
+        idPeriodStatsText.setVisibility(View.VISIBLE);
 
         isAllFABVisible =true;
     }
@@ -394,12 +416,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
          */
         idAddExpenseBtn.startAnimation(toBottom);
         idExpenseStatBtn.startAnimation(toBottom);
+        idPeriodStatsBtn.startAnimation(toBottom);
+
         idExpenseBtn.startAnimation(rotateClose);
 
         idAddExpenseBtn.setVisibility(View.INVISIBLE);
         idExpenseStatBtn.setVisibility(View.INVISIBLE);
+        idPeriodStatsBtn.setVisibility(View.INVISIBLE);
+
         idAddExpenseText.setVisibility(View.GONE);
-        idExpenseStatBtnText.setVisibility(View.GONE);
+        idExpenseStatText.setVisibility(View.GONE);
+        idPeriodStatsText.setVisibility(View.GONE);
 
         isAllFABVisible = false;
     }

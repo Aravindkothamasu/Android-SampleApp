@@ -141,4 +141,34 @@
         app:layout_constraintEnd_toStartOf="@+id/idExpenseStat"
         app:layout_constraintTop_toTopOf="@+id/idExpenseStat" />
 
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/idPeriodStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:fabSize="normal"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/idExpenseStat"
+        app:layout_constraintEnd_toEndOf="@+id/idExpenseStat"
+        app:layout_constraintStart_toStartOf="@+id/idExpenseStat"
+        app:srcCompat="@drawable/add_person"
+        android:visibility="visible"
+        android:contentDescription="@string/app_name" />
+    
+    <!--Action name text for the add person button-->
+    <TextView
+        android:id="@+id/idPeriodStatsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Purchase Stats"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/idPeriodStats"
+        app:layout_constraintEnd_toStartOf="@+id/idPeriodStats"
+        app:layout_constraintTop_toTopOf="@+id/idPeriodStats" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
