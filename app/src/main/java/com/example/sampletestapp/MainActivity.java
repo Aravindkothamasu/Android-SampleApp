@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String Str = null;
 
     // Floating Action Button Decleration
-    FloatingActionButton addAlarmFab, addPersonFab;
-    ExtendedFloatingActionButton addActionFab;
-    TextView addAlarmText, addPersonFabText;
+    FloatingActionButton idAddExpenseBtn, idExpenseStatBtn;
+    ExtendedFloatingActionButton idExpenseBtn;
+    TextView idAddExpenseText, idExpenseStatBtnText;
     Boolean isAllFABVisible = false;
 
     // Floating Action Button Animation Decleartion.
@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         ////////////////////////////////////////////////////////////////
         Log.e( getString(R.string.TAG1), "Initalize Variables Done");
-        addActionFab.shrink();
+        idExpenseBtn.shrink();
 
-        addActionFab.setOnClickListener(new View.OnClickListener() {
+        idExpenseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e( getString(R.string.TAG1), "Add Action Fab Set on Click Listener "+isAllFABVisible);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        addPersonFab.setOnClickListener(new View.OnClickListener() {
+        idExpenseStatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e( getString(R.string.TAG1), "Purchase Stats Click Called");
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        addAlarmFab.setOnClickListener(new View.OnClickListener() {
+        idAddExpenseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e( getString(R.string.TAG1), "Add Purchase Click Called");
@@ -366,17 +366,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Radio Group
         RG1 = (RadioGroup)findViewById(R.id.RadioGroup1);
 
-        addAlarmFab = findViewById(R.id.idAddExpense);
-        addPersonFab = findViewById(R.id.idExpenseStat);
-        addActionFab = findViewById(R.id.idExpense);
+        idAddExpenseBtn = findViewById(R.id.idAddExpense);
+        idExpenseStatBtn = findViewById(R.id.idExpenseStat);
+        idExpenseBtn = findViewById(R.id.idExpense);
 
-        addAlarmText = findViewById(R.id.idAddExpenseText);
-        addPersonFabText = findViewById(R.id.idExpenseStatText);
+        idAddExpenseText = findViewById(R.id.idAddExpenseText);
+        idExpenseStatBtnText = findViewById(R.id.idExpenseStatText);
 
-        addAlarmFab.setVisibility(View.GONE);
-        addPersonFab.setVisibility(View.GONE);
-        addAlarmText.setVisibility(View.GONE);
-        addPersonFabText.setVisibility(View.GONE);
+        idAddExpenseBtn.setVisibility(View.GONE);
+        idExpenseStatBtn.setVisibility(View.GONE);
+        idAddExpenseText.setVisibility(View.GONE);
+        idExpenseStatBtnText.setVisibility(View.GONE);
 
         isAllFABVisible = false;
 
@@ -400,20 +400,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void ExpandFloatingActionButton() {
         /*
         // Methods used for without animation.
-        addAlarmFab.show();
-        addPersonFab.show();
+        idAddExpenseBtn.show();
+        idExpenseStatBtn.show();
         // now extend the Ex FAB
-        addActionFab.extend();
+        idExpenseBtn.extend();
          */
 
-        addAlarmFab.startAnimation(fromBottom);
-        addPersonFab.startAnimation(fromBottom);
-        addActionFab.startAnimation(rotateOpen);
+        idAddExpenseBtn.startAnimation(fromBottom);
+        idExpenseStatBtn.startAnimation(fromBottom);
+        idExpenseBtn.startAnimation(rotateOpen);
 
-        addAlarmFab.setVisibility(View.VISIBLE);
-        addPersonFab.setVisibility(View.VISIBLE);
-        addAlarmText.setVisibility(View.VISIBLE);
-        addPersonFabText.setVisibility(View.VISIBLE);
+        idAddExpenseBtn.setVisibility(View.VISIBLE);
+        idExpenseStatBtn.setVisibility(View.VISIBLE);
+        idAddExpenseText.setVisibility(View.VISIBLE);
+        idExpenseStatBtnText.setVisibility(View.VISIBLE);
 
         isAllFABVisible =true;
     }
@@ -422,18 +422,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void ShrinkFloatingActionButton() {
         /*
         // Methods used for without animation.
-        addAlarmFab.hide();
-        addPersonFab.hide();
-        addActionFab.shrink();
+        idAddExpenseBtn.hide();
+        idExpenseStatBtn.hide();
+        idExpenseBtn.shrink();
          */
-        addAlarmFab.startAnimation(toBottom);
-        addPersonFab.startAnimation(toBottom);
-        addActionFab.startAnimation(rotateClose);
+        idAddExpenseBtn.startAnimation(toBottom);
+        idExpenseStatBtn.startAnimation(toBottom);
+        idExpenseBtn.startAnimation(rotateClose);
 
-        addAlarmFab.setVisibility(View.INVISIBLE);
-        addPersonFab.setVisibility(View.INVISIBLE);
-        addAlarmText.setVisibility(View.GONE);
-        addPersonFabText.setVisibility(View.GONE);
+        idAddExpenseBtn.setVisibility(View.INVISIBLE);
+        idExpenseStatBtn.setVisibility(View.INVISIBLE);
+        idAddExpenseText.setVisibility(View.GONE);
+        idExpenseStatBtnText.setVisibility(View.GONE);
 
         isAllFABVisible = false;
     }
