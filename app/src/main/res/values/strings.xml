@@ -23,6 +23,7 @@
     <string name="STATS">PUR_STAT</string>
 
     <!-- Purchase Category Type declaration -->
+    <!-- TODO : if ever changed any need to change in DBHandler also -->
     <integer name="CATEGORY_COUNT">6</integer>
 
     <string name="CATEGORY1">Other</string>
