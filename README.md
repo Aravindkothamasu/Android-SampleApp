@@ -7,6 +7,10 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v2.0 : TBD
+ - Added new floating action button for specific sector returns.
+ - Create a seperate activity for sectorised expences for all tables
+
 ### v1.4 : 22/05/2023
  - Changed start year as 2022 in PurchaseStats.
  - Change Main activity Fab action button
