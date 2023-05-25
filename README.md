@@ -7,9 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
-### v2.0 : TBD
+### v2.0 : 25/05/2023
  - Added new floating action button for specific sector returns.
- - Create a seperate activity for sectorised expences for all tables
+ - Create a seperate activity for individual expences for each category with repective start and end calendar selection of user.
 
 ### v1.4 : 22/05/2023
  - Changed start year as 2022 in PurchaseStats.

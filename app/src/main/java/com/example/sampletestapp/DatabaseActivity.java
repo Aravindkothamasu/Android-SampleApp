@@ -148,8 +148,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         selectedDate.Month = selectedDate.DayOfMonth = selectedDate.Year = 0;
         hideKeyboardFrom( context, v );
         expseSpner.setSelection(0);
-        selectedCategory = getString(R.string.CATEGORY_OTHER);
-        Log.e( getString(R.string.DB), "CLEAR BUF CAT "+ selectedCategory);
+        selectedCategory = getString(R.string.CATEGORY1);
     }
 
     public static void hideKeyboardFrom(Context context, View view) {
