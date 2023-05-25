@@ -61,7 +61,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
 
         Log.e( getString(R.string.DB), "OnCreate isTesting : "+isTesting);
 
-        databaseInitVariables();
+        variableInit();
 
         // creating a new dbhandler class
         // and passing our context to it.
@@ -115,7 +115,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    private void databaseInitVariables() {
+    private void variableInit() {
         // initializing all our variables.
         selectedDate         = new CurrentDate(0, 0, 0);
         calendarDate         = findViewById(R.id.idCalendarDate);

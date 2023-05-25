@@ -89,6 +89,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+
+        idPeriodStatsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e( getString(R.string.TAG1), "Period Stats Btn Clicked");
+                Toast.makeText(MainActivity.this, "Period Stats Clicked", Toast.LENGTH_SHORT).show();
+                CheckForFABExpand();
+
+                Intent intent = new Intent(MainActivity.this, PeriodicStats.class);
+                intent.putExtra("isTesting", C1.isChecked());
+                startActivity(intent);
+            }
+        });
+
         idExpenseStatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,14 +130,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
 
-        idPeriodStatsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e( getString(R.string.TAG1), "Period Stats Btn Clicked");
-                Toast.makeText(MainActivity.this, "Period Stats Clicked", Toast.LENGTH_SHORT).show();
-                CheckForFABExpand();
-            }
-        });
+
 
 
         ////////////////////////////////////////////////////////////////

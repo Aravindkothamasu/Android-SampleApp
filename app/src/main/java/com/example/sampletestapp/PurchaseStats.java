@@ -86,12 +86,12 @@ public class PurchaseStats extends AppCompatActivity {
         idStatGetData = findViewById(R.id.idStatGetData);
         idTxtView     = findViewById(R.id.idTxtView);
 
-        idStatYr.setMinValue(2022);
-        idStatYr.setMaxValue(2030);
+        idStatYr.setMinValue(getResources().getInteger(R.integer.START_YEAR));
+        idStatYr.setMaxValue(getResources().getInteger(R.integer.END_YEAR));
         idStatYr.setWrapSelectorWheel(true);
 
-        idStatMnth.setMinValue(1);
-        idStatMnth.setMaxValue(12);
+        idStatMnth.setMinValue(getResources().getInteger(R.integer.START_MONTH));
+        idStatMnth.setMaxValue(getResources().getInteger(R.integer.END_MONTH));
         idStatMnth.setWrapSelectorWheel(true);
         idStatMnth.setDisplayedValues(MnthValues);
 

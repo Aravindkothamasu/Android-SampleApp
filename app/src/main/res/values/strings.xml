@@ -13,6 +13,15 @@
     <string name="BUT_2_NAME">Trisha</string>
     <string name="BUT_3_NAME">Ivaya</string>
 
+
+    <!-- Month and Yr start Decleration -->
+    <integer name="START_YEAR">2022</integer>
+    <integer name="END_YEAR">2030</integer>
+
+    <integer name="START_MONTH">1</integer>
+    <integer name="END_MONTH">12</integer>
+
+
     <!-- TAG Decleration -->
     <string name="TAG1">ACTVITY1</string>
     <string name="TAG2">ACTVITY2</string>
@@ -21,9 +30,12 @@
     <string name="DB">DBLOG</string>
     <string name="DB_HANDLER">DBHANDLER</string>
     <string name="STATS">PUR_STAT</string>
+    <string name="LOG_PERIODIC_STATS">PERIOD_STAT</string>
+
 
     <!-- Purchase Category Type declaration -->
-    <!-- TODO : if ever changed any need to change in DBHandler also -->
+    <!-- TODO : if ever changed any need to change in DBHandler.java file also -->
+    <!-- TODO : if ever changed any need to change in DatabaseActivity.java file also -->
     <integer name="CATEGORY_COUNT">6</integer>
 
     <string name="CATEGORY1">Other</string>
