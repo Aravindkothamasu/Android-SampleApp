@@ -51,7 +51,7 @@ public class PurchaseStats extends AppCompatActivity {
                     idTxtView.setText("");
 
                     for (int iterator =0; iterator < getResources().getInteger(R.integer.CATEGORY_COUNT); iterator++) {
-                        Log.e(getString(R.string.STATS), "CAT :-> " + Rslt[iterator].CategoryName + " || AMOUNT :-> " + Rslt[iterator].CategoryValue );
+                        Log.e(getString(R.string.STATS), Rslt[iterator].Month+"/"+Rslt[iterator].Year+" CAT -> " + Rslt[iterator].CategoryName + " || AMOUNT :-> " + Rslt[iterator].CategoryValue );
                         TotMnthlyValue += Rslt[iterator].CategoryValue;
                         if( Rslt[iterator].CategoryValue != 0 ) {
                             idTxtView.append(Rslt[iterator].CategoryName + "  Rs. " + Rslt[iterator].CategoryValue + "\n");

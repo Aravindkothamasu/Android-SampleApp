@@ -11,9 +11,13 @@ import android.util.Log;
 class CategoryResult {
         String CategoryName;
         int  CategoryValue;
-        CategoryResult( int Value, String Name ) {
+        int  Month;
+        int  Year;
+        CategoryResult( int Value, String Name, int Mnth, int Yr ) {
             CategoryValue = Value;
             CategoryName  = Name;
+            Month         = Mnth;
+            Year          = Yr;
         }
 }
 
@@ -107,23 +111,23 @@ public class DBHandler extends SQLiteOpenHelper {
             Log.e(mContext.getString(R.string.DB_HANDLER), "Table Ledhu "+ date.Month+"/"+date.Year);
         } else {
             Log.e(mContext.getString(R.string.DB_HANDLER), "Table Vundhi "+ date.Month+"/"+date.Year);
-            Rslt = readAllCategoryAmt(db, generateTableName(date));
+            Rslt = readAllCategoryAmt(db, date);
         }
         db.close();
         return Rslt;
     }
 
-    public CategoryResult[] readAllCategoryAmt( SQLiteDatabase db, String TableName ) {
+    public CategoryResult[] readAllCategoryAmt( SQLiteDatabase db, CurrentDate date ) {
         CategoryResult [] Rslt = null;
         int Amount = 0;
 
         Rslt = new CategoryResult[mContext.getResources().getInteger(R.integer.CATEGORY_COUNT)];
 
         for ( int iterator= 0; iterator < mContext.getResources().getInteger(R.integer.CATEGORY_COUNT); iterator++) {
-            Amount = readCategoryAmt(db, TableName, CategoryNameList[iterator]);
+            Amount = readCategoryAmt(db, date, CategoryNameList[iterator]);
             //Log.e(mContext.getString(R.string.DB_HANDLER), "CAT :-> "+CategoryNameList[iterator]+ " || AMOUNT :-> "+Amount);
 
-            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList[iterator]);
+            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList[iterator], date.Month, date.Year);
             Amount = 0;
         }
         return Rslt;
@@ -131,13 +135,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    public int readCategoryAmt( SQLiteDatabase db, String TableName, String CategoryName ) {
+    public int readCategoryAmt( SQLiteDatabase db, CurrentDate date, String CategoryName ) {
         Cursor cursor = null;
         int Value = 0;
+        String tableName;
 
+        tableName = generateTableName(date);
         // Log.e( mContext.getString(R.string.DB_HANDLER), "readCategoryAmt "+TableName+" "+CategoryName );
 
-        cursor = db.query(TableName, new String[] { mContext.getString(R.string.CATGRY_COL), mContext.getString(R.string.AMOUNT_COL)},
+        cursor = db.query( tableName, new String[] { mContext.getString(R.string.CATGRY_COL), mContext.getString(R.string.AMOUNT_COL)},
                  mContext.getString(R.string.CATGRY_COL) + " =?", new String[] {CategoryName}, null, null, null);
                  // null , null, null, null, null); // TODO : To Read all the elements, use this statement.
 
