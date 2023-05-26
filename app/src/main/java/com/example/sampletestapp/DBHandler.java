@@ -74,7 +74,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Log.e( mContext.getString(R.string.DB_HANDLER), "Database "+ TABLE_NAME);
 
-        if( false == doesTableExist(db, TABLE_NAME)) {
+        if( false == doesTableExist(db, selectedDate)) {
             createTable(db, selectedDate);
         }
 
@@ -97,19 +97,20 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public CategoryResult[] getMonthStats(CurrentDate date) {
+        CategoryResult [] Rslt = null;
         SQLiteDatabase db = this.getReadableDatabase();
-        String TableName = null;
 
         Log.e(mContext.getString(R.string.DB_HANDLER), "Inside getMonth Stats : "+date.Month+"/"+date.Year);
-        TableName = generateTableName(date);
 
-        if( false == doesTableExist(db, TableName)) {
-            Log.e(mContext.getString(R.string.DB_HANDLER), "Table Ledhu "+TableName);
+
+        if( false == doesTableExist(db,date)) {
+            Log.e(mContext.getString(R.string.DB_HANDLER), "Table Ledhu "+ date.Month+"/"+date.Year);
         } else {
-            Log.e(mContext.getString(R.string.DB_HANDLER), "Table Vundhi "+TableName);
-            return readAllCategoryAmt(db, TableName);
+            Log.e(mContext.getString(R.string.DB_HANDLER), "Table Vundhi "+ date.Month+"/"+date.Year);
+            Rslt = readAllCategoryAmt(db, generateTableName(date));
         }
-        return null;
+        db.close();
+        return Rslt;
     }
 
     public CategoryResult[] readAllCategoryAmt( SQLiteDatabase db, String TableName ) {
@@ -188,7 +189,10 @@ public class DBHandler extends SQLiteOpenHelper {
         return TableName;
     }
 
-    public boolean doesTableExist(SQLiteDatabase db, String tableName) {
+    public boolean doesTableExist(SQLiteDatabase db,CurrentDate date) {
+        String tableName;
+
+        tableName = generateTableName(date);
         Log.e( mContext.getString(R.string.DB_HANDLER), "TABLE NAME : "+ tableName);
 
         Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + tableName + "'", null);
