@@ -7,6 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v2.1 : 29/05/2023
+ - Reading database of given inputs of specific category and timeperiod.
+
 ### v2.0 : 25/05/2023
  - Added new floating action button for specific sector returns.
  - Create a seperate activity for individual expences for each category with repective start and end calendar selection of user.
