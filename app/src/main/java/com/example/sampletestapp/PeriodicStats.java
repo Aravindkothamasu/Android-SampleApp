@@ -49,6 +49,8 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(View view) {
                 CurrentDate StartDate, EndDate;
+                CategoryResult [] Rslt = null;
+
                 Log.e(getString(R.string.LOG_PERIODIC_STATS), "PERIOD GET DATA CLICKED");
                 StartDate = readPickerValues(idPeriodSrtMnth, idPeriodSrtYr);
                 EndDate   = readPickerValues(idPeriodEndMnth, idPeriodEndYr);
@@ -66,7 +68,13 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
                     Log.e( getString(R.string.LOG_PERIODIC_STATS), "INPUT CALENDER DATES VERIFIED");
                     // Analyze data with Category
                     dbHandler = new DBHandler(PeriodicStats.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
-                    dbHandler.getPeriodicStats(StartDate, EndDate, selectedCategory);
+                    Rslt = dbHandler.getPeriodicStats(StartDate, EndDate, selectedCategory);
+                    idPeriodTxtVw.setText("CAT "+selectedCategory+ " "+StartDate.Month+"/"+StartDate.Year+" <-> "+EndDate.Month+"/"+EndDate.Year+"\n");
+                    for( int iterator = 0; iterator < Rslt.length; iterator++ ) {
+                        if( Rslt[iterator].isValid == true ) {
+                            idPeriodTxtVw.append(Rslt[iterator].Month+"/"+Rslt[iterator].Year +" Amt "+Rslt[iterator].CategoryValue+"\n");
+                        }
+                    }
                 } else {
                     Log.e(getString(R.string.LOG_PERIODIC_STATS), "INPUT CALENDER DATES WRONG");
                 }
