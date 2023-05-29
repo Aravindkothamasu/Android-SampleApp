@@ -3,6 +3,7 @@ package com.example.sampletestapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 
 
 public class PeriodicStats extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    boolean isTesting = false;
+    Intent  intent;
+    DBHandler dbHandler;
     private Button   idPeriodBtn;
     private TextView idPeriodTxtVw;
     private NumberPicker idPeriodSrtMnth, idPeriodSrtYr;
@@ -44,26 +48,55 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
         idPeriodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CurrentDate Start, End;
+                CurrentDate StartDate, EndDate;
                 Log.e(getString(R.string.LOG_PERIODIC_STATS), "PERIOD GET DATA CLICKED");
-                Start = readPickerValues(idPeriodSrtMnth, idPeriodSrtYr);
-                End   = readPickerValues(idPeriodEndMnth, idPeriodEndYr);
+                StartDate = readPickerValues(idPeriodSrtMnth, idPeriodSrtYr);
+                EndDate   = readPickerValues(idPeriodEndMnth, idPeriodEndYr);
 
                 Log.e( getString(R.string.LOG_PERIODIC_STATS), "CATEGORY "+selectedCategory+"\n");
-                Log.e( getString(R.string.LOG_PERIODIC_STATS), "START MM/YY : "+ Start.Month+"/"+Start.Year+"\n");
-                Log.e( getString(R.string.LOG_PERIODIC_STATS), "START MM/YY : "+ End.Month+"/"+End.Year+"\n");
+                Log.e( getString(R.string.LOG_PERIODIC_STATS), "START MM/YY : "+ StartDate.Month+"/"+StartDate.Year+"\n");
+                Log.e( getString(R.string.LOG_PERIODIC_STATS), "START MM/YY : "+ EndDate.Month+"/"+EndDate.Year+"\n");
 
                 idPeriodTxtVw.setText("CATEGORY "+selectedCategory+"\n");
-                idPeriodTxtVw.append(Start.Month+"/"+Start.Year+" <-> "+End.Month+"/"+End.Year+"\n");
+                idPeriodTxtVw.append( StartDate.Month+"/"+StartDate.Year+" <-> "+EndDate.Month+"/"+EndDate.Year+"\n");
                 idPeriodTxtVw.append("Processing....");
-                // Analyze data with Category
+
+
+                if( true == validateInputDates( StartDate, EndDate )) {
+                    Log.e( getString(R.string.LOG_PERIODIC_STATS), "INPUT CALENDER DATES VERIFIED");
+                    // Analyze data with Category
+                    dbHandler = new DBHandler(PeriodicStats.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
+                    dbHandler.getPeriodicStats(StartDate, EndDate, selectedCategory);
+                } else {
+                    Log.e(getString(R.string.LOG_PERIODIC_STATS), "INPUT CALENDER DATES WRONG");
+                }
                 clearBuffers(getApplicationContext());
             }
         });
     }
 
+    private boolean validateInputDates( CurrentDate StartDate, CurrentDate EndDate ) {
+        boolean Rtn = false;
+
+        if( StartDate.Year > EndDate.Year ) {                   // Start Date should Year should be less than EndDate.
+            Rtn = false;
+        } else if ( StartDate.Year < EndDate.Year ) {
+            Rtn = true;
+        } else if ( StartDate.Year == EndDate.Year ) {
+            if( StartDate.Month < EndDate.Month) {
+                Rtn = true;
+            } else {
+                Rtn = false;
+            }
+        }
+        return Rtn;
+    }
+
 
     private void variableInit() {
+        intent = getIntent();
+        isTesting = intent.getBooleanExtra("isTesting", false);
+
         idPeriodBtn   = findViewById(R.id.idPeriodBtn);
 
         /////////////////////////  Spinner  ///////////////////////////

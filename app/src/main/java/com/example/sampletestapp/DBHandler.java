@@ -13,11 +13,14 @@ class CategoryResult {
         int  CategoryValue;
         int  Month;
         int  Year;
-        CategoryResult( int Value, String Name, int Mnth, int Yr ) {
+        boolean isValid;
+
+        CategoryResult( int Value, String Name, int Mnth, int Yr, boolean bValid) {
             CategoryValue = Value;
             CategoryName  = Name;
             Month         = Mnth;
             Year          = Yr;
+            isValid       = bValid;
         }
 }
 
@@ -100,6 +103,58 @@ public class DBHandler extends SQLiteOpenHelper {
         Log.e( mContext.getString(R.string.DB_HANDLER), "addNewCourse Close Called");
     }
 
+    public CategoryResult[] getPeriodicStats( CurrentDate StartDate, CurrentDate EndDate, String selectedCategory ) {
+        CategoryResult [] Rslt = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        int MonthsCount = 0, Amount = 0;
+        CurrentDate temp = new CurrentDate(0,0,0);
+
+        MonthsCount = calculateMonthsCount(StartDate, EndDate);
+        Rslt = new CategoryResult[MonthsCount];
+
+        Log.e( mContext.getString(R.string.DB_HANDLER), "MNTHS "+MonthsCount+" "+StartDate.Month+"/"+StartDate.Year+ " To "+EndDate.Month+"/"+EndDate.Year+ " CAT : "+selectedCategory);
+
+        for( int iterator = 0; iterator < MonthsCount; iterator++ ) {
+            temp.Year   = StartDate.Year;
+            temp.Month  = StartDate.Month;
+
+            for (int i = 0; i < iterator; i++) {
+                temp = INCCIRCULARINDEX( temp,12);
+            }
+
+            if( false == doesTableExist(db,temp)) {
+                Log.e(mContext.getString(R.string.DB_HANDLER), "Table Ledhu  "+ temp.Month+"/"+temp.Year);
+                Rslt[iterator] = new CategoryResult( 0, selectedCategory, temp.Month, temp.Year, false);
+            } else {
+                Amount = readCategoryAmt(db, temp, selectedCategory);
+                Rslt[iterator] = new CategoryResult(Amount, selectedCategory, temp.Month, temp.Year, true);
+                Log.e(mContext.getString(R.string.DB_HANDLER), "Table Vundhi "+ temp.Month+"/"+temp.Year + " Amt "+Amount );
+            }
+        }
+
+        db.close();
+        return Rslt;
+    }
+
+    private CurrentDate INCCIRCULARINDEX( CurrentDate temp, int Len)  {
+        if( temp.Month + 1 > Len) {
+            temp.Month = 1;
+            temp.Year++;
+        } else {
+            temp.Month++;
+        }
+        return temp;
+    }
+
+    public int calculateMonthsCount(CurrentDate StartDate, CurrentDate EndDate ) {
+        int MonthsCount = 0;
+
+        MonthsCount  = ( EndDate.Year - StartDate.Year - 1 ) * 12;
+        MonthsCount += 12 - StartDate.Month + EndDate.Month+1; // Adding 1 for including EndDate.Month also
+        Log.e(mContext.getString(R.string.DB_HANDLER), "MONTHS COUNT "+MonthsCount);
+        return MonthsCount;
+    }
+
     public CategoryResult[] getMonthStats(CurrentDate date) {
         CategoryResult [] Rslt = null;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -127,8 +182,7 @@ public class DBHandler extends SQLiteOpenHelper {
             Amount = readCategoryAmt(db, date, CategoryNameList[iterator]);
             //Log.e(mContext.getString(R.string.DB_HANDLER), "CAT :-> "+CategoryNameList[iterator]+ " || AMOUNT :-> "+Amount);
 
-            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList[iterator], date.Month, date.Year);
-            Amount = 0;
+            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList[iterator], date.Month, date.Year, true);
         }
         return Rslt;
     }
@@ -172,23 +226,6 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*
-    public boolean tableExists(SQLiteDatabase db, String table) {
-        boolean result = false;
-
-        Log.e( mContext.getString(R.string.DB_HANDLER), "TABLE NAME : "+table);
-        String sql = "select count(*) xcount from sqlite_master where type='table' and name='"
-                + table + "'";
-        Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToFirst();
-        if (cursor.getInt(0) > 0)
-            result = true;
-        cursor.close();
-        Log.e( mContext.getString(R.string.DB_HANDLER), "istableExits : "+result);
-        return result;
-    }
-     */
-
     static String generateTableName( CurrentDate selectedDate ) {
         String TableName;
         TableName = "TABLE_"+Integer.toString(selectedDate.Month)+"_"+Integer.toString(selectedDate.Year);
@@ -199,7 +236,6 @@ public class DBHandler extends SQLiteOpenHelper {
         String tableName;
 
         tableName = generateTableName(date);
-        Log.e( mContext.getString(R.string.DB_HANDLER), "TABLE NAME : "+ tableName);
 
         Cursor cursor = db.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + tableName + "'", null);
 
@@ -209,12 +245,11 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor != null) {
             if (cursor.getCount() > 0) {
                 cursor.close();
-                Log.e( mContext.getString(R.string.DB_HANDLER), "doesTableExist : true");
+                //Log.e( mContext.getString(R.string.DB_HANDLER), "doesTableExist : true");
                 return true;
             }
             cursor.close();
         }
-        Log.e( mContext.getString(R.string.DB_HANDLER), "doesTableExist : false");
         return false;
     }
 }
