@@ -7,6 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v2.2 : 20/06/2023
+ - Added new category called Home for all home releated quries.
+
 ### v2.1 : 29/05/2023
  - Reading database of given inputs of specific category and timeperiod.
 
