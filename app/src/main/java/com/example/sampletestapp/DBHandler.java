@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 
 class CategoryResult {
         String CategoryName;
@@ -28,7 +30,7 @@ class CategoryResult {
 public class DBHandler extends SQLiteOpenHelper {
     // below variable is for our table name.
     private String TABLE_NAME ="";
-    public  String []CategoryNameList;
+    public ArrayList<String> CategoryNameList = new ArrayList<String>();
     private final Context mContext;
 
     // creating a constructor for our database handler.
@@ -37,14 +39,13 @@ public class DBHandler extends SQLiteOpenHelper {
         super(context, DB_NAME, null, context.getResources().getInteger(R.integer.DB_VERSION));
         mContext = context;
 
-        CategoryNameList = new String[context.getResources().getInteger(R.integer.CATEGORY_COUNT)];
-        CategoryNameList[0] = context.getString(R.string.CATEGORY1);
-        CategoryNameList[1] = context.getString(R.string.CATEGORY2);
-        CategoryNameList[2] = context.getString(R.string.CATEGORY3);
-        CategoryNameList[3] = context.getString(R.string.CATEGORY4);
-        CategoryNameList[4] = context.getString(R.string.CATEGORY5);
-        CategoryNameList[5] = context.getString(R.string.CATEGORY6);
-        CategoryNameList[6] = context.getString(R.string.CATEGORY7);
+        CategoryNameList.add(context.getString(R.string.CATEGORY1));
+        CategoryNameList.add(context.getString(R.string.CATEGORY2));
+        CategoryNameList.add(context.getString(R.string.CATEGORY3));
+        CategoryNameList.add(context.getString(R.string.CATEGORY4));
+        CategoryNameList.add(context.getString(R.string.CATEGORY5));
+        CategoryNameList.add(context.getString(R.string.CATEGORY6));
+        CategoryNameList.add(context.getString(R.string.CATEGORY7));
 
         Log.e(context.getString(R.string.DB_HANDLER),"InDBHandler");
     }
@@ -180,10 +181,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Rslt = new CategoryResult[mContext.getResources().getInteger(R.integer.CATEGORY_COUNT)];
 
         for ( int iterator= 0; iterator < mContext.getResources().getInteger(R.integer.CATEGORY_COUNT); iterator++) {
-            Amount = readCategoryAmt(db, date, CategoryNameList[iterator]);
+            Amount = readCategoryAmt(db, date, CategoryNameList.get(iterator));
             //Log.e(mContext.getString(R.string.DB_HANDLER), "CAT :-> "+CategoryNameList[iterator]+ " || AMOUNT :-> "+Amount);
 
-            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList[iterator], date.Month, date.Year, true);
+            Rslt[iterator] = new CategoryResult(Amount, CategoryNameList.get(iterator), date.Month, date.Year, true);
         }
         return Rslt;
     }
