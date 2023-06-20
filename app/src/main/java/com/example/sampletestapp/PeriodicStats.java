@@ -31,7 +31,7 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
     // Below Spinner related variables
     private Spinner idCategoryList;
     String selectedCategory;
-    ArrayList<String> idCategoryAryLst = new ArrayList<String>();
+    ArrayList<String> CategoryNameList = new ArrayList<String>();
     ArrayAdapter<String> idCategoryAdapter;
 
     @Override
@@ -40,6 +40,7 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_periodic_stats);
         Log.e(getString(R.string.LOG_PERIODIC_STATS), "Periodic Stats Called");
 
+        dbHandler = new DBHandler(PeriodicStats.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
         variableInit();
         resetPickerValues(idPeriodSrtMnth, idPeriodSrtYr);
         resetPickerValues(idPeriodEndMnth, idPeriodEndYr);
@@ -67,7 +68,6 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
                 if( true == validateInputDates( StartDate, EndDate )) {
                     Log.e( getString(R.string.LOG_PERIODIC_STATS), "INPUT CALENDER DATES VERIFIED");
 
-                    dbHandler = new DBHandler(PeriodicStats.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
                     Rslt = dbHandler.getPeriodicStats(StartDate, EndDate, selectedCategory);
 
                     idPeriodTxtVw.setText("CAT "+selectedCategory+ " "+StartDate.Month+"/"+StartDate.Year+" <-> "+EndDate.Month+"/"+EndDate.Year+"\n");
@@ -113,15 +113,9 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
         idCategoryList.setOnItemSelectedListener(this);
         idCategoryList.setVisibility(View.VISIBLE);
 
-        idCategoryAryLst.add(getString(R.string.CATEGORY1));
-        idCategoryAryLst.add(getString(R.string.CATEGORY2));
-        idCategoryAryLst.add(getString(R.string.CATEGORY3));
-        idCategoryAryLst.add(getString(R.string.CATEGORY4));
-        idCategoryAryLst.add(getString(R.string.CATEGORY5));
-        idCategoryAryLst.add(getString(R.string.CATEGORY6));
-        idCategoryAryLst.add(getString(R.string.CATEGORY7));
+        dbHandler.feedCategoryNameList(CategoryNameList, getApplicationContext());
 
-        idCategoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idCategoryAryLst);
+        idCategoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CategoryNameList);
         idCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         idCategoryList.setAdapter(idCategoryAdapter);
 

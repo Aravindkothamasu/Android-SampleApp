@@ -35,17 +35,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // creating a constructor for our database handler.
     public DBHandler(Context context, String DB_NAME) {
-
         super(context, DB_NAME, null, context.getResources().getInteger(R.integer.DB_VERSION));
         mContext = context;
-
-        CategoryNameList.add(context.getString(R.string.CATEGORY1));
-        CategoryNameList.add(context.getString(R.string.CATEGORY2));
-        CategoryNameList.add(context.getString(R.string.CATEGORY3));
-        CategoryNameList.add(context.getString(R.string.CATEGORY4));
-        CategoryNameList.add(context.getString(R.string.CATEGORY5));
-        CategoryNameList.add(context.getString(R.string.CATEGORY6));
-        CategoryNameList.add(context.getString(R.string.CATEGORY7));
+        feedCategoryNameList( CategoryNameList, context);
 
         Log.e(context.getString(R.string.DB_HANDLER),"InDBHandler");
     }
@@ -103,6 +95,16 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
 
         Log.e( mContext.getString(R.string.DB_HANDLER), "addNewCourse Close Called");
+    }
+
+    public void feedCategoryNameList( ArrayList lCategoryNameList ,Context context) {
+        lCategoryNameList.add(context.getString(R.string.CATEGORY1));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY2));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY3));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY4));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY5));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY6));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY7));
     }
 
     public CategoryResult[] getPeriodicStats( CurrentDate StartDate, CurrentDate EndDate, String selectedCategory ) {

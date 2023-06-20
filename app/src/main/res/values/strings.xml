@@ -34,7 +34,7 @@
 
 
     <!-- Purchase Category Type declaration -->
-    <!-- TODO : if ever changed any need to change in DBHandler.java, DatabaseActivity.java, PeriodicStats.java -->
+    <!-- TODO : if ever changed any need to change in DBHandler.java ( func feedCategoryNameList() ) -->
     <integer name="CATEGORY_COUNT">7</integer>
 
     <string name="CATEGORY1">Other</string>

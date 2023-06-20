@@ -41,7 +41,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
     private CalendarView calendarDate;
     String selectedCategory;
     CurrentDate selectedDate;
-    ArrayList<String> expseSpnerAryLst = new ArrayList<String>();
+    ArrayList<String> CategoryNameList = new ArrayList<String>();
     ArrayAdapter<String> expseAdapter;
     Spinner expseSpner;
     boolean isTesting = false;
@@ -60,12 +60,11 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
 
 
         Log.e( getString(R.string.DB), "OnCreate isTesting : "+isTesting);
-
+        dbHandler = new DBHandler(DatabaseActivity.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
         variableInit();
 
         // creating a new dbhandler class
         // and passing our context to it.
-        dbHandler = new DBHandler(DatabaseActivity.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
         Log.e( getString(R.string.DB), "After new DBHandler Called");
 
         calendarDate.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
@@ -128,15 +127,9 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         expseSpner.setOnItemSelectedListener(this);
         expseSpner.setVisibility(View.VISIBLE);
 
-        expseSpnerAryLst.add(getString(R.string.CATEGORY1));
-        expseSpnerAryLst.add(getString(R.string.CATEGORY2));
-        expseSpnerAryLst.add(getString(R.string.CATEGORY3));
-        expseSpnerAryLst.add(getString(R.string.CATEGORY4));
-        expseSpnerAryLst.add(getString(R.string.CATEGORY5));
-        expseSpnerAryLst.add(getString(R.string.CATEGORY6));
-        expseSpnerAryLst.add(getString(R.string.CATEGORY7));
+        dbHandler.feedCategoryNameList(CategoryNameList, getApplicationContext());
 
-        expseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, expseSpnerAryLst);
+        expseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CategoryNameList);
         expseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         expseSpner.setAdapter(expseAdapter);
     }
