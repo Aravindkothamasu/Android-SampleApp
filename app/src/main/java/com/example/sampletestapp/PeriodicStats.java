@@ -66,9 +66,10 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
 
                 if( true == validateInputDates( StartDate, EndDate )) {
                     Log.e( getString(R.string.LOG_PERIODIC_STATS), "INPUT CALENDER DATES VERIFIED");
-                    // Analyze data with Category
+
                     dbHandler = new DBHandler(PeriodicStats.this, isTesting ? getString(R.string.DB_FILENAME_TESTING) : getString(R.string.DB_FILENAME_RELEASE));
                     Rslt = dbHandler.getPeriodicStats(StartDate, EndDate, selectedCategory);
+
                     idPeriodTxtVw.setText("CAT "+selectedCategory+ " "+StartDate.Month+"/"+StartDate.Year+" <-> "+EndDate.Month+"/"+EndDate.Year+"\n");
                     for( int iterator = 0; iterator < Rslt.length; iterator++ ) {
                         if( Rslt[iterator].isValid == true ) {
@@ -118,6 +119,7 @@ public class PeriodicStats extends AppCompatActivity implements AdapterView.OnIt
         idCategoryAryLst.add(getString(R.string.CATEGORY4));
         idCategoryAryLst.add(getString(R.string.CATEGORY5));
         idCategoryAryLst.add(getString(R.string.CATEGORY6));
+        idCategoryAryLst.add(getString(R.string.CATEGORY7));
 
         idCategoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idCategoryAryLst);
         idCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

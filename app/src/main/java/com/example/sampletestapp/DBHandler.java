@@ -44,6 +44,7 @@ public class DBHandler extends SQLiteOpenHelper {
         CategoryNameList[3] = context.getString(R.string.CATEGORY4);
         CategoryNameList[4] = context.getString(R.string.CATEGORY5);
         CategoryNameList[5] = context.getString(R.string.CATEGORY6);
+        CategoryNameList[6] = context.getString(R.string.CATEGORY7);
 
         Log.e(context.getString(R.string.DB_HANDLER),"InDBHandler");
     }

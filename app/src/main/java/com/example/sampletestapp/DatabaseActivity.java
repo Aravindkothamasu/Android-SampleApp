@@ -134,6 +134,7 @@ public class DatabaseActivity extends AppCompatActivity implements AdapterView.O
         expseSpnerAryLst.add(getString(R.string.CATEGORY4));
         expseSpnerAryLst.add(getString(R.string.CATEGORY5));
         expseSpnerAryLst.add(getString(R.string.CATEGORY6));
+        expseSpnerAryLst.add(getString(R.string.CATEGORY7));
 
         expseAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, expseSpnerAryLst);
         expseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
