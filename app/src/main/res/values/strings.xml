@@ -35,7 +35,7 @@
 
     <!-- Purchase Category Type declaration -->
     <!-- TODO : if ever changed any need to change in DBHandler.java ( func feedCategoryNameList() ) -->
-    <integer name="CATEGORY_COUNT">7</integer>
+    <integer name="CATEGORY_COUNT">8</integer>
 
     <string name="CATEGORY1">Other</string>
     <string name="CATEGORY2">Tea</string>
@@ -44,6 +44,7 @@
     <string name="CATEGORY5">Stk Rtn</string>
     <string name="CATEGORY6">Frnd</string>
     <string name="CATEGORY7">Home</string>
+    <string name="CATEGORY8">Stk Buy</string>
 
     <string name="CATEGORY_OTHER">@string/CATEGORY1</string>
     <string name="CATEGORY_STOCK_RTN">@string/CATEGORY5</string>

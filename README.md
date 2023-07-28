@@ -7,6 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v2.4 : 28/07/2023
+ - Added new field called Stk Buy
+
 ### v2.3 : 22/06/2023
  - Changed to Cig to Air.
 
