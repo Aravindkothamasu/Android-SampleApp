@@ -106,6 +106,8 @@ public class DBHandler extends SQLiteOpenHelper {
         lCategoryNameList.add(context.getString(R.string.CATEGORY6));
         lCategoryNameList.add(context.getString(R.string.CATEGORY7));
         lCategoryNameList.add(context.getString(R.string.CATEGORY8));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY9));
+        lCategoryNameList.add(context.getString(R.string.CATEGORY10));
     }
 
     public CategoryResult[] getPeriodicStats( CurrentDate StartDate, CurrentDate EndDate, String selectedCategory ) {
