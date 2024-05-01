@@ -7,6 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v2.5 : 01/05/2024
+ - Added new fields called paper and rapido
+
 ### v2.4 : 28/07/2023
  - Added new field called Stk Buy
 
