@@ -7,6 +7,9 @@ This Software is purely developed and tested : ___Aravind Kothamasu___
 
 ## Tag History
 
+### v2.6 : 22/09/2025
+ - Added new fields called Dream and Tiragadam
+
 ### v2.5 : 01/05/2024
  - Added new fields called paper and rapido
 
