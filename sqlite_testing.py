@@ -25,5 +25,5 @@ for sheet_name, df in sheets.items():
   df.to_sql(table_name, conn, if_exists="replace", index=False)
 
 conn.close()
-print("SQLite database 'purchases.db' created successfully.")
+print("SQLite database 'ARAVIND_EXPENSES.sqlite' created successfully.")
 
