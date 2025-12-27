@@ -1,5 +1,9 @@
 #!/bin/python
 
+# Installation Steps
+# python3 -m pip install pandas
+# python3 -m pip install pandas openpyxl
+
 import pandas as pd
 import sqlite3
 
