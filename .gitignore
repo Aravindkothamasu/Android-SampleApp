@@ -1,5 +1,7 @@
 *.iml
 .gradle
+ARAVIND_EXPENSES.sqlite
+ARAVIND_EXPENSES.xlsx
 /local.properties
 /.idea/caches
 /.idea/libraries
